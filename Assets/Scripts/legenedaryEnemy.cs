@@ -32,33 +32,28 @@ public class legendaryEnemy : Enemies
     protected override void Update()
     {
         base.Update();
-        if ((turnManager.turnStatus == initiative) && !hasGone && turnManager.state == BattleState.ENEMYTURN)
-        {
-            hasGone = true;
-            startTurn();
-        }
     }
 
     void setStats()
     {
-        damage = 3;
-        hitPoints = 4;
+        damage = 4;
+        hitPoints = 8;
         blockPoints = 3;
         setCoins();
         name1 = "Legendary Enemy";
         moveSpeed = 1 * tileSize;
-        attackRange = (attackRange * tileSize);
+        attackRange = (2 * tileSize);
     }
     int setInitiative()
+    {
+        initiative = Random.Range(1, 19) - 1;
+        if (initiative < 1)
         {
-            initiative = Random.Range(1, 19) - 1;
-            if (initiative < 1)
-            {
-                initiative = 1;
-            }
-
-            return initiative;
+            initiative = 1;
         }
+
+        return initiative;
+    }
 
     protected void setCoins()
     {
@@ -66,10 +61,7 @@ public class legendaryEnemy : Enemies
     }
     protected override void startTurn()
     {
-        if (!hasMoved)
-        {
-            MoveTowardsPlayer();
-        }
+        base.startTurn();
 
     }
     protected override void MoveTowardsPlayer()

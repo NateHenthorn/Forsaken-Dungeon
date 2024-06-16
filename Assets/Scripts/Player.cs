@@ -9,49 +9,108 @@ public class Player : MonoBehaviour
 {
     //Tile 
     private Tile currentTile;
-
     public bool nextButtonClicked = false;
 
+    //ItemStats
+    public int itemDamage = 0;
+    public int itemDamageType = 0;
+    public int itemRange = 1;
+    public int itemCritChance = 0;
+    public int chanceToPierce = 0;
+
+    //Resistances
+    public int acidResistance = 1;
+    public int shockResistance = 1;
+    public int flameResistance = 1;
+    public int frozenResistance = 1;
+    public int magicResistance = 1;
+
+    //Special Abilities
+    public int chanceToChainLightning = 0;
+    public int canHeal = 0;
+    public int cloudDamage = 0;
+    public bool canDealCloudDamage = false;
+    public int cloudDamageType = -1;
+    public int cloudDamageRange = 1;
+    public int chanceToCauseBleed = 0;
+    public int numLavaPools = 0;
+    public bool canCreateLavaPools = false;
+    public int lavaPoolDamage = 0;
+    public int lavaPoolPercentToHit = 10;
+    public bool bloodyBargain = false;
+    public bool slashingStrike = false;
+    public bool flameBreath = false;
+    public int flameBreathHitChance = 0;
+    public int flameBreathDamage = 0;
+    public bool KnightsStance = false;
+    public int KnightsStanceNum = -1; //0 or 1
+    public bool warpingIllusion = false;
+    public bool quickPop = false;
+    public int chanceToStun = 0;
+    public int stunDuration = 0;
+
+    //Special Damage Types
+    public int bleedDamage = 0;
+    public int frozenDamage = 0;
+    public int flameDamage = 0;
+    public int shockDamage = 0;
+    public int fireDamage = 0;
+    public int magicDamage = 0;
+    public int piercingDamage = 0;
+    public int acidDamage = 0;
+
+    //Player Sats
     public int dmg = 40;
     public int hitPoints = 100;
-    public int currentHP;
+    public int currentHP = 100;
     public int moveRate = 1;
     public int initiative = 10;
+    public int actionPoints = 3;
+    public int actionPointsUsed = 0;
+    public int blockPoints = 1;
+    public int luck = 0;
+    public int costToLevel = 1;
+    public int strength = 1;
+    public int dextartity = 1;
+    public int intelligence = 1;
+    public int faith = 1;
+    public int moveSpeed = 1;
+    public int attackRange = 1;
+
+    //Hands
     public GameObject rightHand;
     public GameObject leftHand;
-    public int actionPoints = 0;
-    public int blockPoints = 0;
-    public int luck = 0;
+
+    //Coins and XP
+    public int prevCoins = 0;
     public int coins = 0;
     public int levelPoints = 0;
-    public int costToLevel = 1;
-    public int strength;
-    public int dextartity;
-    public int intelligence;
-    public int faith;
-    public bool playerSlain = false;   
-    public GameObject turnHolder;
-    public int test = 0;
+
+    //inventory
+    public PShopItem[] pShopItems = new PShopItem[99];
+
+    //Turn based 
+    public bool playerSlain = false;
     public bool actionDone = false;
-    public int moveSpeed = 5000;
-    public int attackRange = 1;
-    public LayerMask enemyLayer;
-    public float moveDuration = 5;
     public int turnStatus = 0;
+    private bool hasGone = false;
+    public bool hasMoved = false;
+    public bool hasTakenAction = false;
+    public int tileSize = 26;
+    public int stunnedFor = 0;
+    public bool stunned = false;
+
+    //References
     private GameManager gameManager;
     private TurnManager turnManager;
-    private bool hasGone = false;
     private Rigidbody2D rb;
-    //canvas and statblock
     public StatBlock statblock;
     private Canvas canvas;
     public Button Next;
-    public bool hasMoved = false;
-    public bool hasTakenAction = false;
     private Camera mainCamera;
-    public int tileSize = 26;
     private StatBlock thisStatBlock;
     public StatTable statTable;
+    public GameLogs gameLogs;
 
 
     private void Start()
@@ -61,6 +120,7 @@ public class Player : MonoBehaviour
         statTable = GameObject.FindGameObjectWithTag("StatTable").GetComponent<StatTable>();
         canvas = FindObjectOfType<Canvas>();
         turnManager = FindObjectOfType<TurnManager>();
+        gameLogs = GameObject.FindGameObjectWithTag("GameLogs").GetComponent<GameLogs>();
         setStats();
         makeStatBlock();
         if (Next != null)
@@ -73,24 +133,84 @@ public class Player : MonoBehaviour
     private void Update()
     {
         HandleMouseInput();
-        if ((turnManager.turnStatus == initiative) && !hasGone)
+        if ((turnManager.turnStatus == initiative) && !hasGone && !stunned)
         {
             hasGone = true;
             turnManager.isPlayerTurn = false;
             startTurn();
-            }
-        if (hitPoints <= 0)
+        }
+        if (currentHP <= 0)
         {
             playerIsSlain();
+        }
+        if (prevCoins != coins)
+        {
+            prevCoins = coins;
+            GameLogs.Instance.playerCurrentCoin = coins;
+        }
+        if (actionPointsUsed == actionPoints)
+        {
+            endTurn();
         }
     }
 
 
     void setStats()
     {
-        currentHP = GameManager.Instance.playerHP;
+        actionPoints = 3;
+        currentHP = GameLogs.Instance.playerCurrentHP;
+        coins = GameLogs.Instance.playerCurrentCoin;
         moveRate = 1 * tileSize;
-        attackRange = (attackRange * tileSize);
+        pShopItems = GameLogs.Instance.pShopItems;
+        itemRange = GameLogs.Instance.playerItemRange;
+        itemDamage = GameLogs.Instance.playerItemDamage;
+        itemDamageType = GameLogs.Instance.playerItemDamageType;
+        strength = GameLogs.Instance.playerStrength;
+        attackRange = itemRange * tileSize;
+        dmg = itemDamage + (strength * 4);
+        itemCritChance = GameLogs.Instance.playerItemCrit;
+        luck = GameLogs.Instance.playerCurrentLuck;
+        blockPoints = GameLogs.Instance.playerCurrentBP;
+        actionPoints = GameLogs.Instance.playerCurrentAP;
+        costToLevel = GameLogs.Instance.playerCostToLevel;
+        //Resistances
+        acidResistance = GameLogs.Instance.playerAcidResist;
+        shockResistance = GameLogs.Instance.playerShockResist;
+        flameResistance = GameLogs.Instance.playerFlameResist;
+        frozenResistance = GameLogs.Instance.playerFrozenResist;
+        magicResistance = GameLogs.Instance.playerMagicResist;
+        //Damage
+        bleedDamage = GameLogs.Instance.playerBleedDamage;
+        frozenDamage = GameLogs.Instance.playerFrozenDamage;
+        flameDamage = GameLogs.Instance.playerFlameDamage;
+        shockDamage = GameLogs.Instance.playerShockDamage;
+        fireDamage = GameLogs.Instance.playerFireDamage;
+        magicDamage = GameLogs.Instance.playerMagicResist;
+        piercingDamage = GameLogs.Instance.playerPiercingDamage;
+        acidDamage = GameLogs.Instance.playerAcidDamage;
+        //Special Abilities
+        chanceToChainLightning = GameLogs.Instance.chanceToChainLightning;
+        canHeal = GameLogs.Instance.playerCanHeal;
+        cloudDamage = GameLogs.Instance.cloudDamage;
+        canDealCloudDamage = GameLogs.Instance.canDealCloudDamage;
+        cloudDamageType = GameLogs.Instance.cloudDamageType;
+        cloudDamageRange = GameLogs.Instance.cloudDamageRange;
+        chanceToCauseBleed = GameLogs.Instance.chanceToCauseBleed;
+        numLavaPools = GameLogs.Instance.numLavaPools;
+        canCreateLavaPools = GameLogs.Instance.canCreateLavaPools;
+        lavaPoolDamage = GameLogs.Instance.lavaPoolDamage;
+        lavaPoolPercentToHit = GameLogs.Instance.lavaPoolPercentToHit;
+        bloodyBargain = GameLogs.Instance.bloodyBargain;
+        slashingStrike = GameLogs.Instance.slashingStrike;
+        flameBreath = GameLogs.Instance.flameBreath;
+        flameBreathHitChance = GameLogs.Instance.flameBreathHitChance;
+        flameBreathDamage = GameLogs.Instance.flameBreathDamage;
+        KnightsStance = GameLogs.Instance.KnightsStance;
+        KnightsStanceNum = GameLogs.Instance.KnightsStanceNum;
+        warpingIllusion = GameLogs.Instance.warpingIllusion;
+        quickPop = GameLogs.Instance.quickPop;
+        chanceToStun = GameLogs.Instance.chanceToStun;
+        stunDuration = GameLogs.Instance.stunDuration;
     }
 
 
@@ -111,10 +231,11 @@ public class Player : MonoBehaviour
     {
         thisStatBlock.setInitiative(initiative);
         thisStatBlock.name1.text = "Player";
-        thisStatBlock.HP.text = "" + hitPoints;
+        thisStatBlock.HP.text = "" + currentHP;
         thisStatBlock.DMG.text = "" + dmg;
         thisStatBlock.SE.text = "" + levelPoints;
         thisStatBlock.coins.text = "" + coins;
+
     }
 
     public void startTurn()
@@ -129,7 +250,6 @@ public class Player : MonoBehaviour
         {
             Debug.LogError("Player is not on a valid tile at the start of turn.");
         }
-        HandleAttack();
     }
 
     private void InitializePlayerOnTile()
@@ -146,25 +266,20 @@ public class Player : MonoBehaviour
         }
     }
 
-    private void HandleAttack()
-    {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            Collider[] hitEnemies = Physics.OverlapSphere(transform.position, attackRange, enemyLayer);
-
-            foreach (Collider enemy in hitEnemies)
-            {
-                // Attack enemy
-                Destroy(enemy.gameObject);
-            }
-        }
-    }
 
     void AttackEnemy(Enemies enemy)
-    { 
-        enemy.takePhysicalDamage(this.dmg);
-        print("DMG" + this.dmg + " " + dmg);
+    {
+        int crit = 1;
+        int random = Random.Range(1, 20);
+        int stunNum = Random.Range(0, chanceToStun);
+        if (stunNum > 0)
+        {
+            stunNum = stunDuration;
+        }
+        if (random <= itemCritChance) { crit = 2; print("Crit hit" + this.dmg * crit); }
+        enemy.takeDamage(this.dmg * crit, this.frozenDamage, this.magicDamage, this.flameDamage, this.shockDamage, this.piercingDamage, this.acidDamage, stunNum);
         hasTakenAction = true;
+        actionPointsUsed++;
     }
     void HandleMouseInput()
     {
@@ -174,22 +289,22 @@ public class Player : MonoBehaviour
             RaycastHit hit;
             if (Physics.Raycast(ray, out hit))
             {
-              //  Debug.Log("Raycast hit: " + hit.collider.gameObject.name);
+                //  Debug.Log("Raycast hit: " + hit.collider.gameObject.name);
                 GameObject clickedObject = hit.collider.gameObject;
                 if (clickedObject.CompareTag("Enemy"))
                 {
                     Enemies enemyScript = clickedObject.GetComponent<Enemies>();
-                    if (enemyScript != null && !hasTakenAction)
+                    if (enemyScript != null && actionPointsUsed < actionPoints)
                     {
                         if (IsEnemyAdjacent(clickedObject))
                         {
                             AttackEnemy(enemyScript);
                         }
-                        
+
                     }
                 }
             }
-            
+
         }
     }
 
@@ -213,6 +328,15 @@ public class Player : MonoBehaviour
         hasMoved = false;
         hasTakenAction = false;
         turnManager.state = BattleState.ENEMYTURN;
+        actionPointsUsed = 0;
+        if (stunnedFor != 0)
+        {
+            stunnedFor--;
+        }
+        else
+        {
+            stunned = false;
+        }
     }
     private void OnNextButtonClick()
     {
@@ -279,17 +403,104 @@ public class Player : MonoBehaviour
     }
 
     //Handle Damage and Death
-
-
+    public void takeDamage(int physicalDmg, int frozenDmg, int magicDmg, int flameDmg, int shockDmg, int pierceDmg, int acidDmg, int stunDiration)
+    {
+        if (physicalDmg > 0)
+        {
+            takePhysicalDamage(physicalDmg);
+        }
+        if (frozenDmg > 0)
+        {
+            takeFrozenDamage(frozenDmg);
+        }
+        if (magicDmg > 0)
+        {
+            takeMagicalDamage(magicDmg);
+        }
+        if (flameDmg > 0)
+        {
+            takeFlameDamage(flameDmg);
+        }
+        if (shockDmg > 0)
+        {
+            takeShockDamage(shockDmg);
+        }
+        if (pierceDmg > 0)
+        {
+            takePiercingkDamage(pierceDmg);
+        }
+        if (acidDmg > 0)
+        {
+            takeAcidDamage(acidDmg);
+        }
+        if (stunDiration > 0)
+        {
+            becomeStunned(stunDiration);
+        }
+    }
+    public void becomeStunned(int diration)
+    {
+        stunnedFor = diration;
+        stunned = true;
+    }
     public void takePhysicalDamage(int damage)
     {
-        if (dmg > blockPoints)
-        {
-            hitPoints = hitPoints - (damage - blockPoints);
-            currentHP = currentHP - (damage - blockPoints);
-            GameManager.Instance.playerHP = currentHP;
-            setStatBlock();
-        }
+        if (blockPoints == 0) { blockPoints = 1; }
+        hitPoints = hitPoints - (damage / blockPoints);
+        currentHP = currentHP - (damage / blockPoints);
+        GameLogs.Instance.playerCurrentHP = currentHP;
+        setStatBlock();
+    }
+    public void takeFrozenDamage(int damage)
+    {
+        if (frozenResistance == 0) { frozenResistance = 1; }
+        hitPoints = hitPoints - (damage / frozenResistance);
+        currentHP = currentHP - (damage / frozenResistance);
+        GameLogs.Instance.playerCurrentHP = currentHP;
+        setStatBlock();
+    }
+    public void takeMagicalDamage(int damage)
+    {
+        if (magicResistance == 0) { magicResistance = 1; }
+        hitPoints = hitPoints - (damage / magicResistance);
+        currentHP = currentHP - (damage / magicResistance);
+        GameLogs.Instance.playerCurrentHP = currentHP;
+        setStatBlock();
+    }
+    public void takeFlameDamage(int damage)
+    {
+        if (flameResistance == 0) { flameResistance = 1; }
+        hitPoints = hitPoints - (damage / flameResistance);
+        currentHP = currentHP - (damage / flameResistance);
+        GameLogs.Instance.playerCurrentHP = currentHP;
+        setStatBlock();
+
+    }
+    public void takeShockDamage(int damage)
+    {
+        if (shockResistance == 0) { shockResistance = 1; }
+        hitPoints = hitPoints - (damage / shockResistance);
+        currentHP = currentHP - (damage / shockResistance);
+        GameLogs.Instance.playerCurrentHP = currentHP;
+        setStatBlock();
+
+    }
+    public void takePiercingkDamage(int damage)
+    {
+        if (blockPoints == 0) { blockPoints = 1; }
+        hitPoints = hitPoints - (damage);
+        currentHP = currentHP - (damage);
+        GameLogs.Instance.playerCurrentHP = currentHP;
+        setStatBlock();
+
+    }
+    public void takeAcidDamage(int damage)
+    {
+        if (acidResistance == 0) { acidResistance = 1; }
+        hitPoints = hitPoints - (damage / acidResistance);
+        currentHP = currentHP - (damage / acidResistance);
+        GameLogs.Instance.playerCurrentHP = currentHP;
+        setStatBlock();
     }
 
     void playerIsSlain()
@@ -301,7 +512,7 @@ public class Player : MonoBehaviour
 
     private void OnDestroy()
     {
-        GameManager.Instance.playerHP = currentHP;
+        // GameLogs.Instance.playerCurrentHP = currentHP;
     }
 
     // Healing
@@ -309,6 +520,6 @@ public class Player : MonoBehaviour
     {
         currentHP += amount;
         // Update the GameManager with the new HP value
-        GameManager.Instance.playerHP = currentHP;
+        GameLogs.Instance.playerCurrentHP = currentHP;
     }
 }

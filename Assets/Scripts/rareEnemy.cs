@@ -30,13 +30,8 @@ public class rareEnemy : Enemies
     protected override void Update()
     {
         base.Update();
-        if ((turnManager.turnStatus == initiative) && !hasGone && turnManager.state == BattleState.ENEMYTURN)
-        {
-            hasGone = true;
-            startTurn();
-        }
     }
-    
+
     void setStats()
     {
         damage = 2;
@@ -45,28 +40,25 @@ public class rareEnemy : Enemies
         name1 = "Rare Enemy";
         setCoins();
         moveSpeed = 1 * tileSize;
-        attackRange = (attackRange * tileSize);
+        attackRange = (1 * tileSize);
     }
     protected void setCoins()
     {
         coins = Random.Range(2, 5);
     }
     int setInitiative()
+    {
+        initiative = Random.Range(1, 19) - 3;
+        if (initiative < 1)
         {
-            initiative = Random.Range(1, 19) - 3;
-            if (initiative < 1)
-            {
-                initiative = 1;
-            }
-
-            return initiative;
+            initiative = 1;
         }
+
+        return initiative;
+    }
     protected override void startTurn()
     {
-        if (!hasMoved)
-        {
-            MoveTowardsPlayer();
-        }
+        base.startTurn();
 
     }
 

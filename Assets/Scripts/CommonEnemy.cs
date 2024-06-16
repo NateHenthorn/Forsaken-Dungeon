@@ -28,11 +28,6 @@ public class commonEnemy : Enemies
     protected override void Update()
     {
         base.Update();
-        if ((turnManager.turnStatus == initiative) && !hasGone && turnManager.state == BattleState.ENEMYTURN)
-        {
-            hasGone = true;
-            startTurn();
-        }
     }
 
     void setStats()
@@ -43,7 +38,7 @@ public class commonEnemy : Enemies
         setCoins();
         name1 = "Common Enemy";
         moveSpeed = 1 * tileSize;
-        attackRange = (attackRange * tileSize);
+        attackRange = (1 * tileSize);
     }
 
     protected void setCoins()
@@ -61,14 +56,10 @@ public class commonEnemy : Enemies
     }
     protected override void startTurn()
     {
-        if (!hasMoved)
-        {
-        MoveTowardsPlayer();
-        }
-        
+        base.startTurn();
     }
 
-   
+
     protected override void MoveTowardsPlayer()
     {
         base.MoveTowardsPlayer();
@@ -87,7 +78,7 @@ public class commonEnemy : Enemies
     protected override void endTurn()
     {
         base.endTurn();
-     }
+    }
 
     //Tile Code
 
@@ -146,7 +137,7 @@ public class commonEnemy : Enemies
     }
 
     //Handle Attack
-   
+
     public override bool IsPlayerAdjacent()
     {
         bool returnValue;
