@@ -12,9 +12,10 @@ public class D0RoomTile : RoomTile
     }
 
     // Update is called once per frame
-    protected override void Updete()
+    protected override void Update()
     {
-        base.Updete();
+        base.Update();
+        CheckForNeighbors();
     }
 
     protected override void OnMouseDown()
@@ -35,5 +36,9 @@ public class D0RoomTile : RoomTile
     public override void Unhighlight()
     {
         base.Unhighlight();
+    }
+    public override void CheckForNeighbors()
+    {
+        base.CheckForNeighbors();
     }
 }

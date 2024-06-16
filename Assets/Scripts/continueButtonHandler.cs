@@ -7,7 +7,8 @@ public class continueButtonHandler : MonoBehaviour
 {
     public SceneController controller;
     // Start is called before the first frame update
-    public void continueOn(){
+    public void continueOn()
+    {
         controller.GoToMapScene();
     }
 }

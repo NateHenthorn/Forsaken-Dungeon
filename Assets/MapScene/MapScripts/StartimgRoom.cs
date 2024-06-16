@@ -7,12 +7,13 @@ public class StartimgRoom : RoomTile
     protected override void Start()
     {
         base.Start();
+        isCompletedRoom = true;
     }
 
     // Update is called once per frame
-    protected override void Updete()
+    protected override void Update()
     {
-        base.Updete();
+        base.Update();
     }
 
     protected override void OnMouseDown()

@@ -14,6 +14,6 @@ public class BlankRoom : RoomTile
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 }

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
-public class EnemyTile : Tile
+public class EnemySpawn : Tile
 {
     public override void Start()
     {

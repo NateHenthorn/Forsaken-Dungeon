@@ -9,12 +9,13 @@ public class MapManager : MonoBehaviour
 
     private void Awake()
     {
-        if (Instance == null) { 
+        if (Instance == null)
+        {
             Instance = this;
         }
         else { Destroy(gameObject); }
     }
-    
+
     public MapCreator creator;
     public bool tileSelected = false;
     public RoomTile selectedTile;
@@ -26,7 +27,7 @@ public class MapManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     public void selectTile(RoomTile tile)
@@ -38,6 +39,8 @@ public class MapManager : MonoBehaviour
         tile.Highlight();
         selectedTile = tile;
         tileSelected = true;
+        GameLogs.Instance.currentRoomX = tile.xCord;
+        GameLogs.Instance.currentRoomY = tile.yCord;
     }
 
     public void loadMap()

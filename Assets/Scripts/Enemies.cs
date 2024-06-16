@@ -7,14 +7,42 @@ using UnityEngine.UI;
 
 public class Enemies : MonoBehaviour
 {
+    public int vision = 5;
     public GameMap gameMap;
     public int damage = 10;
     public int hitPoints = 100;
     public int moveRate = 500;
     public int coins = 5;
-    public int blockPoints = 0;
-    public int attackRange = 0;
+    public int blockPoints = 1;
+    public int attackRange = 1;
     public int moveSpeed = 26;
+    public int actionPoints = 2;
+    public int actionPointsUsed = 0;
+
+    //Resistances
+    public int acidResistance = 1;
+    public int shockResistance = 1;
+    public int flameResistance = 1;
+    public int frozenResistance = 1;
+    public int magicResistance = 1;
+
+    //Special Damage Types
+    public int bleedDamage = 0;
+    public int frozenDamage = 0;
+    public int flameDamage = 0;
+    public int shockDamage = 0;
+    public int fireDamage = 0;
+    public int magicDamage = 0;
+    public int piercingDamage = 0;
+    public int acidDamage = 0;
+
+    //Special
+    public int stunnedFor = 0;
+    public bool stunned = false;
+    public int chanceToStun = 0;
+    public int stunDuration = 0;
+    public int critChance = 0;
+
     // Reference to the player
     public GameObject player;
     public Player playerScript;
@@ -43,7 +71,8 @@ public class Enemies : MonoBehaviour
     public Button Next;
     public string name1 = "Enemy";
     public int tileSize = 26;
-
+    //Hover
+    private EnemyHover enemyHover;
     public Enemies(GameObject prefab)
     {
         thisPrefab = prefab;
@@ -55,7 +84,9 @@ public class Enemies : MonoBehaviour
     }
     protected virtual void Start()
     {
+        //EnemyHover = this.GetComponent<EnemyHover>();
         // Find player object
+        vision = vision * tileSize;
         player = GameObject.FindGameObjectWithTag("Player");
         statTable = GameObject.FindGameObjectWithTag("StatTable").GetComponent<StatTable>();
         playerScript = player.GetComponent<Player>();
@@ -67,6 +98,7 @@ public class Enemies : MonoBehaviour
         canvas = FindObjectOfType<Canvas>();
         turnManager = GameObject.FindGameObjectWithTag("TurnManager").GetComponent<TurnManager>();
         setTurnStatusNum();
+       // EnemyHover.enemyName = name1;
     }
 
 
@@ -76,9 +108,11 @@ public class Enemies : MonoBehaviour
         {
             enemySlain();
         }
-        if (turnManager.turnStatus == initiative && !hasGone && turnManager.state == BattleState.ENEMYTURN) 
+        if (turnManager.turnStatus == initiative && actionPointsUsed < actionPoints && turnManager.state == BattleState.ENEMYTURN)
         {
-            if (IsPlayerAdjacent() && !hasTakenAction){AttackPlayer();}
+            hasGone = true;
+            startTurn();
+            if (IsPlayerAdjacent()) { AttackPlayer(); }
         }
     }
 
@@ -86,7 +120,11 @@ public class Enemies : MonoBehaviour
     {
     }
     protected virtual void startTurn()
-    { 
+    {
+        if (!hasMoved)
+        {
+            MoveTowardsPlayer();
+        }
     }
     protected virtual void MoveTowardsPlayer()
     {
@@ -103,7 +141,7 @@ public class Enemies : MonoBehaviour
 
         Tile nextTile = FindClosestAdjacentTile(direction);
 
-        if (nextTile != null && !nextTile.IsOccupiedByEnemy() && !nextTile.isSolid)
+        if (nextTile != null && !nextTile.IsOccupiedByEnemy() && !nextTile.isSolid && IsPlayerInVision())
         {
             MoveToTile(nextTile);
         }
@@ -117,7 +155,7 @@ public class Enemies : MonoBehaviour
     protected virtual void makeStatBlock()
     {
         thisStats = statTable.makeStatBlock();
-        statBlockNum = statTable.getStatBlockNum() - 1; 
+        statBlockNum = statTable.getStatBlockNum() - 1;
         setStatBlock();
     }
 
@@ -190,7 +228,7 @@ public class Enemies : MonoBehaviour
     {
         if (currentTile != null)
         {
-            currentTile.VacateTile();
+            currentTile.eVacateTile();
         }
 
         currentTile = newTile;
@@ -270,12 +308,32 @@ public class Enemies : MonoBehaviour
         float diffY = Mathf.Abs(enemyPosition.y - playerPosition.y);
 
         // Check if the enemy is in an adjacent tile (considering 4-way adjacency)
-        return (diffX <= 26 && diffY <= 26) || (diffY <= 26 && diffX <= 0) || (diffY <= 0 && diffX <= 26);
+        return (diffX <= attackRange && diffY <= attackRange) || (diffY <= attackRange && diffX <= 0) || (diffY <= 0 && diffX <= attackRange);
+    }
+    public virtual bool IsPlayerInVision()
+    {
+        Vector3 enemyPosition = transform.position;
+        Vector3 playerPosition = player.transform.position;
+
+        // Calculate the difference in positions
+        float diffX = Mathf.Abs(enemyPosition.x - playerPosition.x);
+        float diffY = Mathf.Abs(enemyPosition.y - playerPosition.y);
+
+        // Check if the enemy is in an adjacent tile (considering 4-way adjacency)
+        return (diffX <= vision && diffY <= vision) || (diffY <= vision && diffX <= 0) || (diffY <= 0 && diffX <= vision);
     }
 
     public virtual void AttackPlayer()
     {
-        playerScript.takePhysicalDamage(this.damage);
+        int crit = 1;
+        int random = Random.Range(1, 20);
+        int stunNum = Random.Range(0, chanceToStun);
+        if (stunNum > 0)
+        {
+            stunNum = stunDuration;
+        }
+        if (random <= critChance) { crit = 2; print("Crit hit" + this.damage * crit); }
+        playerScript.takeDamage(this.damage * crit, this.frozenDamage, this.magicDamage, this.flameDamage, this.shockDamage, this.piercingDamage, this.acidDamage, stunNum);
         hasTakenAction = true;
     }
 
@@ -284,25 +342,102 @@ public class Enemies : MonoBehaviour
     {
         playerScript.coins += this.coins;
         playerScript.setStatBlock();
-      }
+    }
+    public virtual void takeDamage(int physicalDmg, int frozenDmg, int magicDmg, int flameDmg, int shockDmg, int pierceDmg, int acidDmg, int stunDiration)
+    {
+        if (physicalDmg > 0)
+        {
+            takePhysicalDamage(physicalDmg);
+        }
+        if (frozenDmg > 0)
+        {
+            takeFrozenDamage(frozenDmg);
+        }
+        if (magicDmg > 0)
+        {
+            takeMagicalDamage(magicDmg);
+        }
+        if (flameDmg > 0)
+        {
+            takeFlameDamage(flameDmg);
+        }
+        if (shockDmg > 0)
+        {
+            takeShockDamage(shockDmg);
+        }
+        if (pierceDmg > 0)
+        {
+            takePiercingkDamage(pierceDmg);
+        }
+        if (acidDmg > 0)
+        {
+            takeAcidDamage(acidDmg);
+        }
+        if (stunDiration > 0)
+        {
+            becomeStunned(stunDiration);
+        }
+    }
+    public virtual void becomeStunned(int duration)
+    {
+        stunnedFor = duration;
+        stunned = true;
+    }
     public virtual void takePhysicalDamage(int damage)
     {
-        if (damage > blockPoints)
-        {
-            hitPoints = hitPoints - (damage - blockPoints);
-            setStatBlock();
-        }
+        if (blockPoints == 0) { blockPoints = 1; }
+        hitPoints = hitPoints - (damage / blockPoints);
+        setStatBlock();
+    }
+    public virtual void takeFrozenDamage(int damage)
+    {
+        if (frozenResistance == 0) { frozenResistance = 1; }
+        hitPoints = hitPoints - (damage / frozenResistance);
+        setStatBlock();
+    }
+    public virtual void takeMagicalDamage(int damage)
+    {
+        if (magicResistance == 0) { magicResistance = 1; }
+        hitPoints = hitPoints - (damage / magicResistance);
+        setStatBlock();
+    }
+    public virtual void takeFlameDamage(int damage)
+    {
+        if (flameResistance == 0) { flameResistance = 1; }
+        hitPoints = hitPoints - (damage / flameResistance);
+        setStatBlock();
 
+    }
+    public virtual void takeShockDamage(int damage)
+    {
+        if (shockResistance == 0) { shockResistance = 1; }
+        hitPoints = hitPoints - (damage / shockResistance);
+        setStatBlock();
+
+    }
+    public virtual void takePiercingkDamage(int damage)
+    {
+        if (blockPoints == 0) { blockPoints = 1; }
+        hitPoints = hitPoints - (damage);
+        setStatBlock();
+
+    }
+    public virtual void takeAcidDamage(int damage)
+    {
+        if (acidResistance == 0) { acidResistance = 1; }
+        hitPoints = hitPoints - (damage / acidResistance);
+        setStatBlock();
     }
     public virtual void enemySlain()
     {
-        currentTile.VacateTile();
-        currentTile.Unhighlight();
+        currentTile.eVacateTile();
+        //currentTile.Unhighlight();
         drop();
         GameManager.numberOfEntities--;
         Destroy(thisStats.gameObject);
         // Remove the corresponding StatBlock
-       // statTable.updateStatTable(statBlockNum);
+        // statTable.updateStatTable(statBlockNum);
+        GameLogs.Instance.numEnemiesKilled++;
         Destroy(this.gameObject);
     }
 

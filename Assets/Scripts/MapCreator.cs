@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
+using Unity.VisualScripting;
 
 public class MapCreator : MonoBehaviour
 {
@@ -24,8 +25,8 @@ public class MapCreator : MonoBehaviour
     public int roomTileSize = 50;
     public int mapSize = 13;
     public int difficulty = 0; // 0-4
-    public int prevLayersKnown = 0;
-    public int layersKnown = 0;
+    public int prevLayersKnown = -1;
+    public int layersKnown = -1;
     public int layer = 0;
     public int currentRoomX = 0;
     public int currentRoomY = 0;
@@ -39,19 +40,22 @@ public class MapCreator : MonoBehaviour
     public GameObject completedRoom; // 101
     public GameObject bossRoom; // 102
     public int numTimesLoaded = 0;
+    public bool bossRoomMade = false;
     int[,] map;
     GameObject[,] mapObjects;
 
     void Start()
     {
+        currentRoomX = GameLogs.Instance.currentRoomX;
+        currentRoomY = GameLogs.Instance.currentRoomY;
         map = new int[mapSize, mapSize];
         mapObjects = new GameObject[mapSize, mapSize];
         createMap();
-       // LoadMapData();
-        //ClearMap();
     }
     private void Update()
     {
+        currentRoomX = GameLogs.Instance.currentRoomX;
+        currentRoomY = GameLogs.Instance.currentRoomY;
         if (prevLayersKnown != layersKnown)
         {
             roomSetter();
@@ -62,7 +66,7 @@ public class MapCreator : MonoBehaviour
 
     void OnApplicationQuit()
     {
-       // SaveMapData();
+        // SaveMapData();
     }
 
     void createMap()
@@ -83,7 +87,7 @@ public class MapCreator : MonoBehaviour
                 else if (i <= layersKnown && j <= layersKnown)
                 {
                     map[i, j] = assignRoom(layer, true);
-               }
+                }
                 else
                 {
                     map[i, j] = assignRoom(layer, false);
@@ -136,18 +140,27 @@ public class MapCreator : MonoBehaviour
                 case 12: roomNum = Random.Range(90, 99) + 100; break;
                 default: break;
             }
-           
+
         }
-         return roomNum;
+        return roomNum;
     }
 
-    void roomSetter()
+    public void roomSetter()
     {
+        bossRoomMade = false;
         for (int i = 0; i < mapSize; i++)
         {
             layer = i;
             for (int j = 0; j < mapSize; j++)
             {
+                if (layer == 12 && !bossRoomMade && map[i, j] == 97)
+                {
+                    bossRoomMade = true;
+                }
+                else if (map[i, j] == 97)
+                {
+                    map[i, j] = 98;
+                }
                 if (j > layer)
                 {
                     layer++;
@@ -156,10 +169,14 @@ public class MapCreator : MonoBehaviour
                 {
                     Destroy(mapObjects[i, j]); // Ensure to destroy previous objects
                 }
-                if (layer >= prevLayersKnown && layer < layersKnown && layersKnown != prevLayersKnown)
+                if (i == currentRoomX && j == currentRoomY)
+                {
+                    map[i, j] = 0;
+                }
+                else if (layer >= prevLayersKnown && layer < layersKnown && layersKnown != prevLayersKnown && map[i, j] - 100 >= 0)
                 {
                     map[i, j] = map[i, j] - 100;
-                  }
+                }
                 switch (map[i, j])
                 {
                     case 0: mapObjects[i, j] = setStartRoom(i, j); break;
@@ -167,15 +184,18 @@ public class MapCreator : MonoBehaviour
                     case < 40: mapObjects[i, j] = level1(i, j); break;
                     case < 60: mapObjects[i, j] = level2(i, j); break;
                     case < 80: mapObjects[i, j] = level3(i, j); break;
+                    case 97: mapObjects[i, j] = makeBossRoom(i, j); break;
                     case < 100: mapObjects[i, j] = level4(i, j); break;
                     case 100: mapObjects[i, j] = blankTile(i, j); break;
-                  //  case < 120: mapObjects[i, j] = level0(i, j); break;
-                   // case < 140: mapObjects[i, j] = level1(i, j); break;
-                   // case < 160: mapObjects[i, j] = level2(i, j); break;
-                   // case < 180: mapObjects[i, j] = level3(i, j); break;
+                    //  case < 120: mapObjects[i, j] = level0(i, j); break;
+                    // case < 140: mapObjects[i, j] = level1(i, j); break;
+                    // case < 160: mapObjects[i, j] = level2(i, j); break;
+                    // case < 180: mapObjects[i, j] = level3(i, j); break;
                     case < 200: mapObjects[i, j] = blankTile(i, j); break;
                     default: break;
                 }
+                mapObjects[i, j].GetComponent<RoomTile>().xCord = i;
+                mapObjects[i, j].GetComponent<RoomTile>().yCord = j;
             }
         }
     }
@@ -218,6 +238,11 @@ public class MapCreator : MonoBehaviour
     GameObject setStartRoom(int x, int y)
     {
         GameObject room = Instantiate(startingRoom, new Vector3(x * roomTileSize, y * roomTileSize, -1), transform.rotation);
+        return room;
+    }
+    GameObject makeBossRoom(int x, int y)
+    {
+        GameObject room = Instantiate(bossRoom, new Vector3(x * roomTileSize, y * roomTileSize, -1), transform.rotation);
         return room;
     }
 

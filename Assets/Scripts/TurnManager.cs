@@ -35,8 +35,8 @@ public class TurnManager : MonoBehaviour
 
     private void Awake()
     {
-        if (Instance == null){Instance = this;}
-        else {Destroy(gameObject);}
+        if (Instance == null) { Instance = this; }
+        else { Destroy(gameObject); }
     }
 
     private void Start()
@@ -55,23 +55,25 @@ public class TurnManager : MonoBehaviour
     {
         numEnemies = GameManager.numberOfEntities;
         if (turnStatus < 0) { turnStatus = turnStatusNum + 1; }
-        if (gameMap.mapCreated) { 
-        switch (state) {
-            case BattleState.ENEMYTURN: if (turnStatus != playerInitiative) { StartCoroutine(EnemysTurn()); } break;
+        if (gameMap.mapCreated)
+        {
+            switch (state)
+            {
+                case BattleState.ENEMYTURN: if (turnStatus != playerInitiative) { StartCoroutine(EnemysTurn()); } break;
 
-            case BattleState.PLAYERTURN: if (turnStatus == playerInitiative) { PlayerTurn(); } break;
+                case BattleState.PLAYERTURN: if (turnStatus == playerInitiative) { PlayerTurn(); StopAllCoroutines(); } break;
 
-            case BattleState.LOST: LoadSlainScreen(); break;
+                case BattleState.LOST: LoadSlainScreen(); break;
 
-            case BattleState.ROOMCOMPLETE: state = BattleState.SHOP; break;
+                case BattleState.ROOMCOMPLETE: state = BattleState.SHOP; break;
 
-            case BattleState.SHOP: LoadShopScene(); break;
+                case BattleState.SHOP: LoadShopScene(); break;
 
-            default: break;
+                default: break;
+            }
         }
-    }
-        if (player1.playerSlain) {state = BattleState.LOST;}
-        else if (numEnemies == 0 && state != BattleState.SHOP){state = BattleState.SHOP;}
+        if (player1.playerSlain) { state = BattleState.LOST; }
+        else if (numEnemies == 0 && state != BattleState.SHOP) { state = BattleState.SHOP; }
     }
 
     private void LoadSlainScreen()
@@ -105,27 +107,7 @@ public class TurnManager : MonoBehaviour
         }
     }
 
-    public void addToQueue(GameObject entity, int type)
-    {
-        entityNode tempNode = new entityNode(entity, type);
-        currentLength++;
-        for (int i = 0; i < currentLength; i++)
-        {
 
-            if (turnByInitiative[i] == null)
-            {
-                turnByInitiative[i] = tempNode;
-                break;
-            }
-        }
-        print(currentLength);
-        if (currentLength > 1)
-        {
-            sortQueue();
-        }
-
-
-    }
 
     public void setTurnStatusNum(int initiative)
     {
@@ -135,62 +117,8 @@ public class TurnManager : MonoBehaviour
         }
 
     }
-    void sortQueue()
-    {
-        entityNode tempNode = new entityNode();
-        int maxInitiative = 0;
-        int secondMaxInitiave = 0;
-        int currentInitiave = 0;
-        int length = currentLength - 1;
-        int adjustor = 0;
 
-        for (int j = 0; j < length; j++)
-        {
-            if (turnByInitiative[j] == null)
-            {
-                break;
-            }
-            int index1 = 0;
-            int index2 = 0;
-            for (int i = 0; (i + adjustor) < length; i++)
-            {
-                if (turnByInitiative[(i + adjustor)] == null)
-                {
-                    break;
-                }
-                tempNode = turnByInitiative[(i + adjustor)];
-                currentInitiave = tempNode.initiative;
-                if (currentInitiave > maxInitiative)
-                {
-                    secondMaxInitiave = maxInitiative;
-                    maxInitiative = currentInitiave;
-                    index2 = index1;
-                    index1 = (i + adjustor);
-                }
-            }
-            swapNodes(adjustor, index1);
-            if (index1 != index2 && currentLength > (adjustor + 2))
-            {
-                swapNodes((adjustor + 1), index2);
-            }
-            adjustor += 2;
 
-        }
-
-    }
-
-    void swapNodes(int a, int b)
-    {
-
-        entityNode tempNode = null;
-        if (turnByInitiative[a] == turnByInitiative[b])
-        {
-            return;
-        }
-        tempNode = turnByInitiative[a];
-        turnByInitiative[a] = turnByInitiative[b];
-        turnByInitiative[b] = tempNode;
-    }
     public void EndPlayerTurn()
     {
         isPlayerTurn = false;
@@ -199,17 +127,15 @@ public class TurnManager : MonoBehaviour
 
     private IEnumerator EnemysTurn()
     {
-        StartCoroutine(increaseTurnStatus());
-       // turnStatus++;
-        yield return new WaitForSeconds(.5f); // Delay between enemy turns 
+        StartCoroutine(decreaseTurnStatus());
+        yield return new WaitForSeconds(.5f); // Delay between enemy turns
 
     }
 
-    private IEnumerator increaseTurnStatus()
+    private IEnumerator decreaseTurnStatus()
     {
         turnStatus--;
-
-        yield return new WaitForSeconds(0f);
+        yield return new WaitForSeconds(0.5f);
     }
 }
 

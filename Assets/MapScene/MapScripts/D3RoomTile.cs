@@ -11,9 +11,9 @@ public class D3RoomTile : RoomTile
     }
 
     // Update is called once per frame
-    protected override void Updete()
+    protected override void Update()
     {
-        base.Updete();
+        base.Update();
     }
 
     protected override void OnMouseDown()

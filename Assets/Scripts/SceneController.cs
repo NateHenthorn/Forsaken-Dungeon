@@ -27,7 +27,6 @@ public class SceneController : MonoBehaviour
     public int roomDif = 0;
     public void Start()
     {
-        mapManager = GameObject.FindGameObjectWithTag("MapManager").GetComponent<MapManager>();
         SceneLoadTracker = GameObject.FindGameObjectWithTag("SceneLoadTracker").GetComponent<SceneLoadTracker>();
     }
     public void Update()
@@ -41,6 +40,7 @@ public class SceneController : MonoBehaviour
 
     public void reloadMap()
     {
+        mapManager = GameObject.FindGameObjectWithTag("MapManager").GetComponent<MapManager>();
         mapManager.loadMap();
     }
     public void GoToScene(string sceneName)
@@ -53,11 +53,12 @@ public class SceneController : MonoBehaviour
         if (MapCreator.Instance != null)
         {
             MapCreator.Instance.SaveMapData(); // Save map data before leaving the scene
-            
+
         }
 
         SceneManager.LoadScene("Map"); // Replace with your map scene name
         MapCreator.Instance.loadMap();
+
     }
 
     public void GoToShopScene()
@@ -79,6 +80,5 @@ public class SceneController : MonoBehaviour
         SceneManager.LoadScene("Room");
         gameManager = FindObjectOfType<GameManager>();
         gameManager.difLevel = roomDif;
-
     }
 }

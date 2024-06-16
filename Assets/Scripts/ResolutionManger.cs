@@ -9,7 +9,7 @@ public class ResolutionManager : MonoBehaviour
     void Start()
     {
         camera = Camera.main;
-        canvas = GetComponent<Canvas>();
+        canvas = FindObjectOfType<Canvas>();
         AdjustResolution();
     }
 

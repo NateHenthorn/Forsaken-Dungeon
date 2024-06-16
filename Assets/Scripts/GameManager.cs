@@ -46,10 +46,10 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-       // TurnManager = GameObject.FindObjectOfType<TurnManager>();
+        // TurnManager = GameObject.FindObjectOfType<TurnManager>();
         TurnManager = GameObject.FindGameObjectWithTag("TurnManager").GetComponent<TurnManager>();
-       // playerSpawner = GameObject.FindObjectOfType<PlayerSpawner>();
-       playerSpawner = GameObject.FindGameObjectWithTag("PlayerSpawner").GetComponent<PlayerSpawner>();
+        // playerSpawner = GameObject.FindObjectOfType<PlayerSpawner>();
+        playerSpawner = GameObject.FindGameObjectWithTag("PlayerSpawner").GetComponent<PlayerSpawner>();
         // enemySpawner = GameObject.FindObjectOfType<EnemySpawner>();
         enemySpawner = GameObject.FindGameObjectWithTag("EnemySpawner").GetComponent<EnemySpawner>();
         gameMap = GameObject.FindGameObjectWithTag("GameMap").GetComponent<GameMap>();
@@ -58,8 +58,10 @@ public class GameManager : MonoBehaviour
         difLevel = sceneController.roomDif;
     }
 
-    public void SpawnPlayer(int x, int y) { 
-        playerSpawner.spawnPlayer(x, y); }
+    public void SpawnPlayer(int x, int y)
+    {
+        playerSpawner.spawnPlayer(x, y);
+    }
 
     public void spawnEnemy(int x, int y)
     {

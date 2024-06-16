@@ -20,7 +20,6 @@ public class EnemySpawner : MonoBehaviour
             enemy.transform.position = new Vector3(x, y, 0);
 
             Enemies playerScript = enemy.GetComponent<commonEnemy>();
-            turnManager.addToQueue(enemy, 1);
             if (playerScript != null)
             {
                 playerScript.Next = nextButton;
@@ -35,7 +34,6 @@ public class EnemySpawner : MonoBehaviour
             enemy.transform.position = new Vector3(x, y, 0);
 
             Enemies enemyScript = enemy.GetComponent<rareEnemy>();
-            turnManager.addToQueue(enemy, 2);
             if (enemyScript != null)
             {
                 enemyScript.Next = nextButton;
@@ -50,7 +48,6 @@ public class EnemySpawner : MonoBehaviour
             enemy.transform.position = new Vector3(x, y, 0);
 
             Enemies enemyScript = enemy.GetComponent<legendaryEnemy>();
-            turnManager.addToQueue(enemy, 3);
             if (enemyScript != null)
             {
                 enemyScript.Next = nextButton;
@@ -65,7 +62,6 @@ public class EnemySpawner : MonoBehaviour
             enemy.transform.position = new Vector3(x, y, 0);
 
             Enemies enemyScript = enemy.GetComponent<forsakenEnemy>();
-            turnManager.addToQueue(enemy, 4);
             if (enemyScript != null)
             {
                 enemyScript.Next = nextButton;

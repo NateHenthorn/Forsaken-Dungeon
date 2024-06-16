@@ -44,7 +44,7 @@ public class StatBlock : MonoBehaviour
     }
     public void setPlayerBlock(Player player)
     {
-       // player.makeStatBlock(280, 270);
+        // player.makeStatBlock(280, 270);
     }
 
     void makeStatBlock()

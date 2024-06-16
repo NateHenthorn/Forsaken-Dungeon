@@ -18,15 +18,17 @@ public class SceneLoadTracker : MonoBehaviour
             Destroy(gameObject);
         }
     }
+    public bool layerIncreased = false;
     public string targetSceneName = "Map";
     public static bool sceneJustLoaded = false;
     public MapCreator creator;
     public int roomDif = 0;
     private void Start()
     {
+        layerIncreased = false;
         creator = GameObject.FindGameObjectWithTag("MapCreator").GetComponent<MapCreator>();
         creator.numTimesLoaded++;
-        creator.layersKnown++;
+        creator.roomSetter();
     }
     private void OnEnable()
     {

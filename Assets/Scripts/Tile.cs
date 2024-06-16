@@ -18,12 +18,12 @@ public class Tile : MonoBehaviour
     {
         tileRenderer = this.GetComponent<MeshRenderer>();
         originalColor = tileRenderer.material.color;
-       player = FindObjectOfType<Player>();
+        player = FindObjectOfType<Player>();
     }
 
     public virtual void Update()
     {
-        if (player.hasMoved == true)
+        if (player.actionPointsUsed >= player.actionPoints)
         {
             UnhighlightNeighbors();
         }
@@ -124,6 +124,11 @@ public class Tile : MonoBehaviour
         isEnemyOccupied = false;
         UnhighlightNeighbors();
     }
+    public virtual void eVacateTile()
+    {
+        isPlayerOccupied = false;
+        isEnemyOccupied = false;
+    }
 
     public bool IsOccupiedByPlayer()
     {
@@ -141,7 +146,7 @@ public class Tile : MonoBehaviour
         {
             // Move the player to this tile if it is highlighted
             Player player = FindObjectOfType<Player>();
-            if (player.hasMoved == false)
+            if (player.actionPointsUsed < player.actionPoints)
             {
                 if (player != null && this.isEnemyOccupied == false)
                 {
@@ -151,7 +156,7 @@ public class Tile : MonoBehaviour
                         currentTile.VacateTile();
                     }
                     player.MoveToTile(this);
-                    player.hasMoved = true;
+                    player.actionPointsUsed++;
                     // UnhighlightNeighbors();
                 }
             }

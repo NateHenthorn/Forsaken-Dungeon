@@ -11,7 +11,7 @@ public class forsakenEnemy : Enemies
     // Start is called before the first frame update
     public GameObject prefab;
     public GameObject common;
-    public int healthPoints = 4;
+    public int healthPoints = 12;
 
     protected override void Start()
     {
@@ -30,44 +30,35 @@ public class forsakenEnemy : Enemies
     protected override void Update()
     {
         base.Update();
-        if ((turnManager.turnStatus == initiative) && !hasGone && turnManager.state == BattleState.ENEMYTURN)
-        {
-            hasGone = true;
-            startTurn();
-        }
     }
 
     void setStats()
     {
-        damage = 4;
-        hitPoints = 4;
+        damage = 6;
+        hitPoints = 12;
         blockPoints = 3;
         setCoins();
         name1 = "Forsaken Enemy";
         moveSpeed = 2 * tileSize;
-        attackRange = (attackRange * tileSize);
+        attackRange = (2 * tileSize);
     }
     protected void setCoins()
     {
         coins = Random.Range(2, 5);
     }
     int setInitiative()
+    {
+        initiative = Random.Range(1, 19);
+        if (initiative < 1)
         {
-            initiative = Random.Range(1, 19);
-            if (initiative < 1)
-            {
-                initiative = 1;
-            }
-
-            return initiative;
+            initiative = 1;
         }
+
+        return initiative;
+    }
     protected override void startTurn()
     {
-        if (!hasMoved)
-        {
-            MoveTowardsPlayer();
-        }
-
+        base.startTurn();
     }
 
 
