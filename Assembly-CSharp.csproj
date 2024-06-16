@@ -10,7 +10,7 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{A9EBD063-048A-93FA-BD45-FE8FE21D86ED}</ProjectGuid>
+    <ProjectGuid>{61C0653F-EC03-5E6C-99CA-CC9003D1ABB5}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AssemblyName>Assembly-CSharp</AssemblyName>
@@ -60,77 +60,77 @@
     <Analyzer Include="D:\Downloads\Unity\Unity\2022.3.30f1\Editor\Data\Tools\Unity.SourceGenerators\Unity.Properties.SourceGenerator.dll" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\TextMesh Pro\Scripts\TextMeshProFloatingText.cs" />
     <Compile Include="Assets\Scripts\StartButtonHandler.cs" />
-    <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextEventHandler.cs" />
     <Compile Include="Assets\MapScene\MapScripts\D3RoomTile.cs" />
     <Compile Include="Assets\Scripts\PlayerSpawner.cs" />
-    <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexShakeA.cs" />
+    <Compile Include="Assets\TextMesh Pro\Scripts\TMP_TextSelector_A.cs" />
     <Compile Include="Assets\MapScene\MapScripts\MapManager.cs" />
+    <Compile Include="Assets\TextMesh Pro\Scripts\TextConsoleSimulator.cs" />
     <Compile Include="Assets\Scripts\forsakenEnemy.cs" />
-    <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_ExampleScript_01.cs" />
-    <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMPro_InstructionOverlay.cs" />
     <Compile Include="Assets\Scripts\TurnManager.cs" />
-    <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexShakeB.cs" />
+    <Compile Include="Assets\TextMesh Pro\Scripts\Benchmark01.cs" />
     <Compile Include="Assets\Scripts\RetryHandler.cs" />
-    <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\DropdownSample.cs" />
-    <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexColorCycler.cs" />
-    <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\EnvMapAnimator.cs" />
+    <Compile Include="Assets\TextMesh Pro\Scripts\VertexColorCycler.cs" />
+    <Compile Include="Assets\TextMesh Pro\Scripts\SimpleScript.cs" />
     <Compile Include="Assets\Scripts\BlankTile.cs" />
+    <Compile Include="Assets\TextMesh Pro\Scripts\TMP_TextEventHandler.cs" />
+    <Compile Include="Assets\TextMesh Pro\Scripts\ShaderPropAnimator.cs" />
+    <Compile Include="Assets\TextMesh Pro\Scripts\TMP_ExampleScript_01.cs" />
     <Compile Include="Assets\Scripts\ObstacleTile.cs" />
-    <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextSelector_A.cs" />
-    <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark01_UGUI.cs" />
-    <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\SimpleScript.cs" />
-    <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark04.cs" />
+    <Compile Include="Assets\TextMesh Pro\Scripts\TMP_UiFrameRateCounter.cs" />
+    <Compile Include="Assets\TextMesh Pro\Scripts\VertexShakeB.cs" />
     <Compile Include="Assets\Scripts\rareEnemy.cs" />
     <Compile Include="Assets\Scripts\PlayerSpawnTile.cs" />
     <Compile Include="Assets\Scripts\Tile.cs" />
-    <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\ChatController.cs" />
-    <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\ObjectSpin.cs" />
-    <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_PhoneNumberValidator.cs" />
+    <Compile Include="Assets\TextMesh Pro\Scripts\VertexZoom.cs" />
+    <Compile Include="Assets\TextMesh Pro\Scripts\DropdownSample.cs" />
+    <Compile Include="Assets\TextMesh Pro\Scripts\Benchmark03.cs" />
+    <Compile Include="Assets\TextMesh Pro\Scripts\TMP_TextSelector_B.cs" />
+    <Compile Include="Assets\TextMesh Pro\Scripts\TMPro_InstructionOverlay.cs" />
     <Compile Include="Assets\Scripts\StatTable.cs" />
+    <Compile Include="Assets\TextMesh Pro\Scripts\TMP_PhoneNumberValidator.cs" />
     <Compile Include="Assets\Scripts\EnemySpawner.cs" />
-    <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexJitter.cs" />
     <Compile Include="Assets\Scripts\MapCreator.cs" />
     <Compile Include="Assets\MapScene\MapScripts\BlankRoom.cs" />
     <Compile Include="Assets\Scripts\StatBlock.cs" />
     <Compile Include="Assets\Scripts\legenedaryEnemy.cs" />
-    <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_DigitValidator.cs" />
-    <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_FrameRateCounter.cs" />
-    <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TextConsoleSimulator.cs" />
-    <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TeleType.cs" />
+    <Compile Include="Assets\TextMesh Pro\Scripts\WarpTextExample.cs" />
     <Compile Include="Assets\Scripts\SceneLoadTracker.cs" />
-    <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextEventCheck.cs" />
-    <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_UiFrameRateCounter.cs" />
-    <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark01.cs" />
-    <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TextMeshSpawner.cs" />
+    <Compile Include="Assets\TextMesh Pro\Scripts\EnvMapAnimator.cs" />
+    <Compile Include="Assets\TextMesh Pro\Scripts\SkewTextExample.cs" />
+    <Compile Include="Assets\TextMesh Pro\Scripts\TMP_DigitValidator.cs" />
     <Compile Include="Assets\MapScene\MapScripts\D2RoomTile.cs" />
     <Compile Include="Assets\Scripts\Player.cs" />
-    <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexZoom.cs" />
     <Compile Include="Assets\Scripts\GameManager.cs" />
-    <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark02.cs" />
+    <Compile Include="Assets\TextMesh Pro\Scripts\ObjectSpin.cs" />
+    <Compile Include="Assets\TextMesh Pro\Scripts\TMP_TextInfoDebugTool.cs" />
+    <Compile Include="Assets\TextMesh Pro\Scripts\VertexShakeA.cs" />
     <Compile Include="Assets\Scripts\CommonEnemy.cs" />
-    <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextSelector_B.cs" />
+    <Compile Include="Assets\TextMesh Pro\Scripts\TMP_FrameRateCounter.cs" />
+    <Compile Include="Assets\TextMesh Pro\Scripts\Benchmark01_UGUI.cs" />
     <Compile Include="Assets\Scripts\ResolutionManger.cs" />
     <Compile Include="Assets\Scripts\SceneController.cs" />
-    <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\SkewTextExample.cs" />
-    <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\WarpTextExample.cs" />
-    <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TextMeshProFloatingText.cs" />
+    <Compile Include="Assets\TextMesh Pro\Scripts\CameraController.cs" />
     <Compile Include="Assets\Scripts\SaveInformationManager.cs" />
     <Compile Include="Assets\Scripts\continueButtonHandler.cs" />
-    <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\ShaderPropAnimator.cs" />
-    <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\CameraController.cs" />
     <Compile Include="Assets\Scripts\GameMap.cs" />
+    <Compile Include="Assets\TextMesh Pro\Scripts\VertexJitter.cs" />
     <Compile Include="Assets\Scripts\Enemies.cs" />
     <Compile Include="Assets\Scripts\EnemyTile.cs" />
-    <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark03.cs" />
+    <Compile Include="Assets\TextMesh Pro\Scripts\Benchmark04.cs" />
+    <Compile Include="Assets\TextMesh Pro\Scripts\Benchmark02.cs" />
     <Compile Include="Assets\Scripts\NextRoomHandler.cs" />
     <Compile Include="Assets\MapScene\MapScripts\D1RoomTile.cs" />
     <Compile Include="Assets\MapScene\MapScripts\D0RoomTile.cs" />
     <Compile Include="Assets\MapScene\MapScripts\D4RoomTile.cs" />
+    <Compile Include="Assets\TextMesh Pro\Scripts\TMP_TextEventCheck.cs" />
     <Compile Include="Assets\MapScene\MapScripts\CompletedRoom.cs" />
     <Compile Include="Assets\MapScene\MapScripts\StartimgRoom.cs" />
     <Compile Include="Assets\MapScene\MapScripts\RoomTile.cs" />
-    <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextInfoDebugTool.cs" />
+    <Compile Include="Assets\TextMesh Pro\Scripts\TeleType.cs" />
+    <Compile Include="Assets\TextMesh Pro\Scripts\TextMeshSpawner.cs" />
+    <Compile Include="Assets\TextMesh Pro\Scripts\ChatController.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
