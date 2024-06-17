@@ -15,4 +15,10 @@ public class PArmor : PShopItem
     {
         
     }
+
+    protected override string pickPrefix(int value)
+    {
+        string rValue = base.pickPrefix(value);
+        return rValue;
+    }
 }
