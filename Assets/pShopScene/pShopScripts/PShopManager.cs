@@ -93,7 +93,7 @@ public class PShopManager : MonoBehaviour
         foreach (ShopItem block in shopItems)
         {
             RectTransform shopItemRect = block.GetComponent<RectTransform>();
-            shopItemRect.anchoredPosition = new Vector2(-360, -100 - currentYOffset);
+            shopItemRect.anchoredPosition = new Vector2(-185, -100 - currentYOffset);
             currentYOffset += shopItemRect.sizeDelta.y + 10f;
         }
     }
