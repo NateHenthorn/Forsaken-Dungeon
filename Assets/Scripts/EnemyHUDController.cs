@@ -90,7 +90,7 @@ public class EnemyHUDController : MonoBehaviour
         }
         currentHUD.setHUDStats(enemy);
         currentHUD.gameObject.SetActive(true);
-        currentHUD.transform.position = new Vector3(Screen.width - 1000, Screen.height - 510, 0); // Adjust this as needed
+        currentHUD.transform.position = new Vector3(Screen.width - 1080, Screen.height - 510, 0); // Adjust this as needed
 
     }
 

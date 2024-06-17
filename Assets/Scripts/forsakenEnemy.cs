@@ -22,7 +22,7 @@ public class forsakenEnemy : Enemies
         player = GameObject.FindGameObjectWithTag("Player");
         playerScript = player.GetComponent<Player>();
         gameManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
-        makeStatBlock();
+       // makeStatBlock();
         turnManager.setTurnStatusNum(initiative);
         InitializeEnemyOnTile();
     }

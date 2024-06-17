@@ -107,7 +107,6 @@ public class Enemies : MonoBehaviour
         canvas = FindObjectOfType<Canvas>();
         turnManager = GameObject.FindGameObjectWithTag("TurnManager").GetComponent<TurnManager>();
         setTurnStatusNum();
-        //enemyHover.enemyName = name1;
     }
 
 
@@ -400,46 +399,46 @@ public class Enemies : MonoBehaviour
     {
         if (blockPoints == 0) { blockPoints = 1; }
         hitPoints = hitPoints - (damage / blockPoints);
-        setStatBlock();
+        //setStatBlock();
     }
     public virtual void takeFrozenDamage(int damage)
     {
         if (frozenResistance == 0) { frozenResistance = 1; }
         hitPoints = hitPoints - (damage / frozenResistance);
-        setStatBlock();
+       // setStatBlock();
     }
     public virtual void takeMagicalDamage(int damage)
     {
         if (magicResistance == 0) { magicResistance = 1; }
         hitPoints = hitPoints - (damage / magicResistance);
-        setStatBlock();
+       // setStatBlock();
     }
     public virtual void takeFlameDamage(int damage)
     {
         if (flameResistance == 0) { flameResistance = 1; }
         hitPoints = hitPoints - (damage / flameResistance);
-        setStatBlock();
+       // setStatBlock();
 
     }
     public virtual void takeShockDamage(int damage)
     {
         if (shockResistance == 0) { shockResistance = 1; }
         hitPoints = hitPoints - (damage / shockResistance);
-        setStatBlock();
+        //setStatBlock();
 
     }
     public virtual void takePiercingkDamage(int damage)
     {
         if (blockPoints == 0) { blockPoints = 1; }
         hitPoints = hitPoints - (damage);
-        setStatBlock();
+        //setStatBlock();
 
     }
     public virtual void takeAcidDamage(int damage)
     {
         if (acidResistance == 0) { acidResistance = 1; }
         hitPoints = hitPoints - (damage / acidResistance);
-        setStatBlock();
+       // setStatBlock();
     }
     public virtual void enemySlain()
     {
@@ -447,7 +446,7 @@ public class Enemies : MonoBehaviour
         //currentTile.Unhighlight();
         drop();
         GameManager.numberOfEntities--;
-        Destroy(thisStats.gameObject);
+        //Destroy(thisStats.gameObject);
         // Remove the corresponding StatBlock
         // statTable.updateStatTable(statBlockNum);
         GameLogs.Instance.numEnemiesKilled++;
