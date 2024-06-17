@@ -45,6 +45,7 @@ public class forsakenEnemy : Enemies
         name1 = prefixName + name1;
         moveSpeed = 2 * tileSize;
         attackRange = (2 * tileSize);
+        applySpecialEffect();
     }
     protected void setCoins()
     {

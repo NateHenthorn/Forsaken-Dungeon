@@ -47,6 +47,7 @@ public class legendaryEnemy : Enemies
         name1 = prefixName + name1;
         moveSpeed = 1 * tileSize;
         attackRange = (2 * tileSize);
+        applySpecialEffect();
     }
     int setInitiative()
     {

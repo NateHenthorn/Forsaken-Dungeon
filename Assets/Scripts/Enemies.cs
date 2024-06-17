@@ -87,6 +87,7 @@ public class Enemies : MonoBehaviour
     public string effect2 = "";
     public string effect3 = "";
     public int damageTypeNum = -1;
+    public int specialEffectNuMCounter = 0;
     public Enemies(GameObject prefab)
     {
         thisPrefab = prefab;
@@ -586,11 +587,10 @@ public class Enemies : MonoBehaviour
 
     }
 
-    protected virtual string applySpecialEffect(int value)
+    protected virtual string applySpecialEffect()
     {
         string rValue = "";
-        damageTypeNum = value;
-        switch (value)
+        switch (prefixNum)
         {
             case 0: rValue = "Abnormal "; break;
             case 1: rValue = "Acidic "; break;
@@ -674,7 +674,13 @@ public class Enemies : MonoBehaviour
             default: rValue = ""; break;
         }
         // damageType = rValue;
-
+        switch (specialEffectNuMCounter)
+        {
+            case 0: effect1 = rValue; break;
+            case 1: effect2 = rValue; break;
+            case 2: effect3 = rValue; break;
+            default: break;
+        }
         return rValue;
 
     }

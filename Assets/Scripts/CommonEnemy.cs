@@ -43,6 +43,7 @@ public class commonEnemy : Enemies
         name1 = prefixName + name1;
         moveSpeed = 1 * tileSize;
         attackRange = (1 * tileSize);
+        applySpecialEffect();
     }
 
     protected void setCoins()

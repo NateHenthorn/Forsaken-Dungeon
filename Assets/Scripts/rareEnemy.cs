@@ -44,6 +44,7 @@ public class rareEnemy : Enemies
         setCoins();
         moveSpeed = 1 * tileSize;
         attackRange = (1 * tileSize);
+        applySpecialEffect();
     }
     protected void setCoins()
     {
