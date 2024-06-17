@@ -45,6 +45,7 @@ public class ShopItem : MonoBehaviour, IPointerClickHandler
             GameLogs.Instance.numItems++;
             Debug.Log("Item bought successfully");
             itemBought();
+            Destroy(gameObject);
         }
         else
         {
