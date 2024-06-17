@@ -45,7 +45,7 @@ public class SceneController : MonoBehaviour
     }
     public void GoToScene(string sceneName)
     {
-        SceneManager.LoadScene(sceneName);
+        SceneManager.LoadScene(sceneName, LoadSceneMode.Single);
     }
 
     public void GoToMapScene()
@@ -55,8 +55,8 @@ public class SceneController : MonoBehaviour
             MapCreator.Instance.SaveMapData(); // Save map data before leaving the scene
 
         }
-
-        SceneManager.LoadScene("Map"); // Replace with your map scene name
+       SceneManager.LoadScene("Map", LoadSceneMode.Single); // Replace with your map scene name
+        MapCreator.Instance.isCurrentScene = true;
         MapCreator.Instance.loadMap();
 
     }
@@ -67,18 +67,24 @@ public class SceneController : MonoBehaviour
         {
             MapCreator.Instance.SaveMapData(); // Save map data before leaving the scene
         }
-        SceneManager.LoadScene("PrestigeShop"); // Replace with your shop scene name
+        SceneManager.LoadScene("PrestigeShop", LoadSceneMode.Single); // Replace with your shop scene name
     }
 
     public void ChangeScene(string sceneName)
     {
-        SceneManager.LoadScene(sceneName);
+        SceneManager.LoadScene(sceneName, LoadSceneMode.Single);
     }
 
     public void GoToRoomScene()
     {
-        SceneManager.LoadScene("Room");
+        // if (MapCreator.Instance != null)
+        // {
+        MapCreator.Instance.isCurrentScene = false;
+            MapCreator.Instance.DestroyMap();
+
+       // }
+        SceneManager.LoadScene("Room", LoadSceneMode.Single);
         gameManager = FindObjectOfType<GameManager>();
-        gameManager.difLevel = roomDif;
+       //GameManager.Instance.difLevel = roomDif;
     }
 }

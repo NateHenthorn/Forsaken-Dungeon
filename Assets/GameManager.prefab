@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: -1928845376224171716}
   m_Layer: 0
   m_Name: GameManager
-  m_TagString: Untagged
+  m_TagString: GameManager
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -128,4 +128,8 @@ MonoBehaviour:
   legendaryEnemyPrefab: {fileID: 7634435598016917836, guid: 6d103bf6356666d448be1da0d5c077cc, type: 3}
   playerSpawner: {fileID: 0}
   enemySpawner: {fileID: 0}
+  playerHP: 100
+  difLevel: -1
   TurnManager: {fileID: 4773514380834784579, guid: c8963fc452a919d4d82519b57a48c519, type: 3}
+  sceneController: {fileID: 0}
+  gameMap: {fileID: 0}

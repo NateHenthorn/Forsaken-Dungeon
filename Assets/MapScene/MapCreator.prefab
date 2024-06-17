@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 7906220488027309297}
   m_Layer: 0
   m_Name: MapCreator
-  m_TagString: Untagged
+  m_TagString: MapCreator
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -118,11 +118,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84f5df7914a0c0549b7d1c209948d7c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tileSize: 26
+  roomTileSize: 50
   mapSize: 13
   difficulty: 0
+  prevLayersKnown: -1
   layersKnown: 2
   layer: 0
+  currentRoomX: 0
+  currentRoomY: 0
   blankRoom: {fileID: 7309701643702443015, guid: e1427a441db43e9499c25949b451cf2a, type: 3}
   D0RT: {fileID: 6268256524086579752, guid: f5100713fba0e054488faa7fe297b455, type: 3}
   D1RT: {fileID: 1604298105046458620, guid: 74946a191019d4645bdda23643d802c7, type: 3}
@@ -132,11 +135,5 @@ MonoBehaviour:
   startingRoom: {fileID: 8181696001288064707, guid: 4b4066be2385e784db6cb581dbe5a9af, type: 3}
   completedRoom: {fileID: 8246130064430194549, guid: a04be13ec0f06ce40a5bf8fdcdf5f428, type: 3}
   bossRoom: {fileID: 0}
-  StartimgRoom: {fileID: -2787819793877753439, guid: 4b4066be2385e784db6cb581dbe5a9af, type: 3}
-  CompletedRoom: {fileID: -776577555518972638, guid: a04be13ec0f06ce40a5bf8fdcdf5f428, type: 3}
-  blankScript: {fileID: 6827046585378286909, guid: e1427a441db43e9499c25949b451cf2a, type: 3}
-  D0RoomTile: {fileID: -1795384765665310991, guid: f5100713fba0e054488faa7fe297b455, type: 3}
-  D1RoomTile: {fileID: 4215254976206340095, guid: 74946a191019d4645bdda23643d802c7, type: 3}
-  D2RoomTile: {fileID: -541792505265364124, guid: 81e4d30913478654dbdc80733e00ded4, type: 3}
-  D3RoomTile: {fileID: 1883668025369286439, guid: 4d6d6236d6dd8fc40a2f4f4f20841978, type: 3}
-  D4RoomTile: {fileID: 1155926363068706785, guid: ff0f23111c3e47e4bac43a870b172d03, type: 3}
+  numTimesLoaded: 0
+  bossRoomMade: 0

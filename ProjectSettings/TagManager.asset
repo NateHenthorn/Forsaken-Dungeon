@@ -13,6 +13,19 @@ TagManager:
   - StatTable
   - Tile
   - RoomTile
+  - SceneController
+  - SaveInformationManager
+  - SceneLoadTracker
+  - MapCreator
+  - MapManager
+  - Weapon
+  - GameLogs
+  - StatBlock
+  - ShopItem
+  - PShopManager
+  - PShopItemSetter
+  - HUD
+  - EnemyHUD
   layers:
   - Default
   - TransparentFX
@@ -21,7 +34,7 @@ TagManager:
   - Water
   - UI
   - 
-  - 
+  - HUD
   - 
   - 
   - 

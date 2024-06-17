@@ -1148,7 +1148,7 @@ GameObject:
   - component: {fileID: -8641773743410425197}
   m_Layer: 5
   m_Name: StatBlock
-  m_TagString: Untagged
+  m_TagString: StatBlock
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1231,6 +1231,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initiative: {fileID: 4671816916183474552}
+  initi: 0
   name1: {fileID: 6773408173204945657}
   HP: {fileID: 8014473560551536530}
   DMG: {fileID: 722941862817249850}

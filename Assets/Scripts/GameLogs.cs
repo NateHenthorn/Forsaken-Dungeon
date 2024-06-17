@@ -5,7 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class GameLogs : MonoBehaviour
 {
-
+    //GameManage Stuff
+    public int roomDifficultLevel = 0;
     //For Map Creater
     public int numLayers = 0;
     public int currentRoomX = 0;
@@ -73,16 +74,22 @@ public class GameLogs : MonoBehaviour
     public int stunDuration = 0;
 
     //BaseStats
+    public int playerActionPoints = 3;
     public int numEnemiesKilled = 0;
-    public int playerConstitution = 1;
     public int playerCurrentHP = 100;
     public int playerCurrentCoin = 0;
-    public int playerStrength = 1;
-    public int playerCurrentLuck = 0;
     public int playerCurrentBP = 1;
     public int playerCurrentAP = 2;
+    public int playerCurrentMBP = 0;
     public int playerCostToLevel = 1;
+
+    //Player Stats
+    public int playerStrength = 1;
+    public int playerCurrentDex = 1;
+    public int playerCurrentLuck = 1;
     public int playersCurrentInt = 1;
+    public int playerConstitution = 1;
+    public int playerCurrentFaith = 1;
 
     //Item Stats
     public int playerItemRange = 1;
@@ -115,8 +122,8 @@ public class GameLogs : MonoBehaviour
     }
     void Start()
     {
-        //currentScene = SceneManager.GetActiveScene();
-        //player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
+        currentScene = SceneManager.GetActiveScene();
+       // player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
         currentSceneName = checkScene();
         loadRoom();
     }

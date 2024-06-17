@@ -1,0 +1,145 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &3853654667061944300
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3121723188476708339}
+  - component: {fileID: 3039345450942065027}
+  - component: {fileID: 2216074610169869483}
+  - component: {fileID: 2009699069749384617}
+  - component: {fileID: 7147167476093303953}
+  m_Layer: 0
+  m_Name: PShopItemSetter
+  m_TagString: PShopItemSetter
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3121723188476708339
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3853654667061944300}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 533.56244, y: 398.21307, z: -445.04803}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!33 &3039345450942065027
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3853654667061944300}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!23 &2216074610169869483
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3853654667061944300}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &2009699069749384617
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3853654667061944300}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &7147167476093303953
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3853654667061944300}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4dcc75fcb1a9f4e4cb1ae78a8455c7ec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Axe: {fileID: 7533589431356752110, guid: efc545b87c697bc46b1677b0f04f6b5f, type: 3}
+  Curved: {fileID: 5219614128733311083, guid: 887237587c10f004691e12a940ecb9ef, type: 3}
+  Dagger: {fileID: 5215108030361980943, guid: 053af373079160e4a9d92295a6542f78, type: 3}
+  Fist: {fileID: 2521161313945375438, guid: 9f93eec198fac614d8326497a4a4c610, type: 3}
+  GreatAxe: {fileID: 2216829950122782385, guid: a1ef7ff18d615da4090beee789449275, type: 3}
+  GreatCurved: {fileID: 4092896614936866253, guid: 0e024dbe551b6844882ecef8373927fa, type: 3}
+  GreatHammer: {fileID: 2411304753803001845, guid: 70eb728031bb7d449a5a01a7686e3ca3, type: 3}
+  GreatLance: {fileID: 2370261802697514770, guid: 919b135dbac367e4d85cec01a1e85d4f, type: 3}
+  Greatsword: {fileID: 2547661782116721225, guid: b665f6b3e00273845891bd1b93d30a29, type: 3}
+  Halberd: {fileID: 3410351339791236212, guid: e669f2b2ecdd4354d9bc496ded6887d3, type: 3}
+  Hammer: {fileID: 6825799291826091654, guid: 5506f4dc67a174f41abfde0b859266c6, type: 3}
+  Katana: {fileID: 929200179686326823, guid: a565e5f9bdb823941b635215f50968c5, type: 3}
+  Ladle: {fileID: 6834101192289765457, guid: e5c61a083df446b4a81600c71cb18f06, type: 3}
+  Lance: {fileID: 8658556068578621861, guid: a51f9a9485921a341a3f1136b4a81ffe, type: 3}
+  Longbow: {fileID: 7772615278045167641, guid: b55bd42b4424fa8419c44bcab614cdd3, type: 3}
+  Scythe: {fileID: 5478405505461785302, guid: 3b11519d26c4c2143813ba4818c55699, type: 3}
+  Spear: {fileID: 5032572493071854722, guid: b2b821e7a84bf144695ead2c4af0aa38, type: 3}
+  Shortbow: {fileID: 7997454520467989495, guid: 383246caa402dfe4ba7cca2439b0e014, type: 3}
+  Staff: {fileID: 2974848058862506010, guid: f13f0db0596dfe64b813ff32f7e5e294, type: 3}
+  Sword: {fileID: 6539027479730065434, guid: 9a54110fbf9af8d429c89555790a498f, type: 3}
+  Talisman: {fileID: 5438824089331786659, guid: b4cf9b6e3eef16e4fb12805801362d6c, type: 3}
+  Torch: {fileID: 3419578805615350079, guid: c51a2af2f3737a44f99dc4acdb8f62df, type: 3}
+  UltraGreatsword: {fileID: 4381720621246135113, guid: fa772e7d80300e44084624aecfedb2b1, type: 3}
+  Twinblades: {fileID: 6921675529749223145, guid: de2c5e5c73ceeb7418f48f3381d9eb38, type: 3}
+  Whip: {fileID: 1668281355630467544, guid: ea3bea539942d964d9a544f1648a1214, type: 3}

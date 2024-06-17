@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: -6443137516683889466}
   m_Layer: 0
   m_Name: GameMap
-  m_TagString: Untagged
+  m_TagString: GameMap
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -130,4 +130,6 @@ MonoBehaviour:
   legendaryEnemy: {fileID: 7634435598016917836, guid: 6d103bf6356666d448be1da0d5c077cc, type: 3}
   statTable: {fileID: 0}
   heightOffset: 1
+  mapCreated: 0
   manager: {fileID: -1928845376224171716, guid: c32d260614b3fd240b840f26da36abbe, type: 3}
+  difLevel: -1

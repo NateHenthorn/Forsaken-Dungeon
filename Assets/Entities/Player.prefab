@@ -119,31 +119,176 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nextButtonClicked: 0
-  damageAmount: 10
-  hipPoints: 100
+  itemDamage: 0
+  itemDamageType: 0
+  itemRange: 1
+  itemCritChance: 0
+  chanceToPierce: 0
+  acidResistance: 1
+  shockResistance: 1
+  flameResistance: 1
+  frozenResistance: 1
+  magicResistance: 1
+  chanceToChainLightning: 0
+  canHeal: 0
+  cloudDamage: 0
+  canDealCloudDamage: 0
+  cloudDamageType: -1
+  cloudDamageRange: 1
+  chanceToCauseBleed: 0
+  numLavaPools: 0
+  canCreateLavaPools: 0
+  lavaPoolDamage: 0
+  lavaPoolPercentToHit: 10
+  bloodyBargain: 0
+  slashingStrike: 0
+  flameBreath: 0
+  flameBreathHitChance: 0
+  flameBreathDamage: 0
+  KnightsStance: 0
+  KnightsStanceNum: -1
+  warpingIllusion: 0
+  quickPop: 0
+  chanceToStun: 0
+  stunDuration: 0
+  bleedDamage: 0
+  frozenDamage: 0
+  flameDamage: 0
+  shockDamage: 0
+  fireDamage: 0
+  magicDamage: 0
+  piercingDamage: 0
+  acidDamage: 0
+  dmg: 40
+  hitPoints: 100
+  currentHP: 100
   moveRate: 1000
   initiative: 10
-  rightHand: {fileID: 0}
-  leftHand: {fileID: 0}
   actionPoints: 0
+  actionPointsUsed: 0
   blockPoints: 0
   luck: 0
-  coins: 0
-  levelPoints: 0
   costToLevel: 1
   strength: 0
   dextartity: 0
   intelligence: 0
   faith: 0
-  turnHolder: {fileID: 0}
-  test: 0
-  actionDone: 0
   moveSpeed: 5000
-  attackRange: 1.5
-  enemyLayer:
-    serializedVersion: 2
-    m_Bits: 0
-  moveDuration: 5
+  attackRange: 1
+  rightHand: {fileID: 0}
+  leftHand: {fileID: 0}
+  prevCoins: 0
+  coins: 0
+  levelPoints: 0
+  pShopItems:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  playerSlain: 0
+  actionDone: 0
   turnStatus: 0
+  hasMoved: 0
+  hasTakenAction: 0
+  tileSize: 26
+  stunnedFor: 0
+  stunned: 0
   statblock: {fileID: -8641773743410425197, guid: a03cbce62632ef4409a50a21f3b37909, type: 3}
   Next: {fileID: 0}
+  statTable: {fileID: 0}
+  gameLogs: {fileID: -6800699678094438455, guid: f0dab26cd24e5654598f7f94b7ae349a, type: 3}

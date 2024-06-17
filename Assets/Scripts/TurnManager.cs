@@ -61,7 +61,7 @@ public class TurnManager : MonoBehaviour
             {
                 case BattleState.ENEMYTURN: if (turnStatus != playerInitiative) { StartCoroutine(EnemysTurn()); } break;
 
-                case BattleState.PLAYERTURN: if (turnStatus == playerInitiative) { PlayerTurn(); StopAllCoroutines(); } break;
+                case BattleState.PLAYERTURN: if (turnStatus == playerInitiative) { PlayerTurn(); StopCoroutine(EnemysTurn()); } break;
 
                 case BattleState.LOST: LoadSlainScreen(); break;
 
@@ -125,19 +125,22 @@ public class TurnManager : MonoBehaviour
         StartCoroutine(EnemysTurn());
     }
 
-    private IEnumerator EnemysTurn()
+    IEnumerator EnemysTurn()
     {
-        StartCoroutine(decreaseTurnStatus());
-        yield return new WaitForSeconds(.5f); // Delay between enemy turns
-
+        
+        yield return new WaitForSeconds(0.2f); // Delay between enemy turns
+        decreaseTurnStatus();
     }
 
-    private IEnumerator decreaseTurnStatus()
+    private void decreaseTurnStatus()
     {
-        turnStatus--;
-        yield return new WaitForSeconds(0.5f);
+        if (turnStatus != playerInitiative)
+        {
+    turnStatus--;
+        }
+        
     }
-}
+    }
 
 
 
