@@ -134,6 +134,7 @@ MonoBehaviour:
   D4RT: {fileID: 3217105706420357896, guid: ff0f23111c3e47e4bac43a870b172d03, type: 3}
   startingRoom: {fileID: 8181696001288064707, guid: 4b4066be2385e784db6cb581dbe5a9af, type: 3}
   completedRoom: {fileID: 8246130064430194549, guid: a04be13ec0f06ce40a5bf8fdcdf5f428, type: 3}
-  bossRoom: {fileID: 0}
+  bossRoom: {fileID: 5955283696995846329, guid: 5d3fecc5df983e549bc3c96b170b7668, type: 3}
   numTimesLoaded: 0
   bossRoomMade: 0
+  isCurrentScene: 1
