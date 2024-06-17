@@ -7,7 +7,7 @@ public class EnemyHUDController : MonoBehaviour
     public GameObject hudPrefab; // Reference to the HUD prefab
     public Canvas canvas; // Reference to the Canvas
     public EnemyHudImage hudImage;
-    private EnemyHudImage currentHUD; // Reference to the current HUD instance
+    public EnemyHudImage currentHUD; // Reference to the current HUD instance
 
 
     //Base Stats
@@ -90,7 +90,7 @@ public class EnemyHUDController : MonoBehaviour
         }
         currentHUD.setHUDStats(enemy);
         currentHUD.gameObject.SetActive(true);
-        currentHUD.transform.position = new Vector3(Screen.width - 1080, Screen.height - 510, 0); // Adjust this as needed
+        //currentHUD.transform.position = new Vector3(Screen.width - 1080, Screen.height - 510, 0); // Adjust this as needed
 
     }
 

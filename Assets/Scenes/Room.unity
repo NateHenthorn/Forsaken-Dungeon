@@ -1349,6 +1349,7 @@ MonoBehaviour:
   hudPrefab: {fileID: 1245732589}
   canvas: {fileID: 1567832632}
   hudImage: {fileID: 1245732590}
+  currentHUD: {fileID: 1245732590}
   Name1: {fileID: 0}
   HP: {fileID: 0}
   BP: {fileID: 0}
