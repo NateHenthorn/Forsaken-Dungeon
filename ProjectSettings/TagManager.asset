@@ -13,6 +13,17 @@ TagManager:
   - StatTable
   - Tile
   - RoomTile
+  - SceneController
+  - SaveInformationManager
+  - SceneLoadTracker
+  - MapCreator
+  - MapManager
+  - Weapon
+  - GameLogs
+  - StatBlock
+  - ShopItem
+  - PShopManager
+  - PShopItemSetter
   layers:
   - Default
   - TransparentFX

@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: -6800699678094438455}
   m_Layer: 0
   m_Name: GameLogs
-  m_TagString: Untagged
+  m_TagString: GameLogs
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -162,6 +162,7 @@ MonoBehaviour:
   quickPop: 0
   chanceToStun: 0
   stunDuration: 0
+  playerActionPoints: 3
   numEnemiesKilled: 0
   playerConstitution: 1
   playerCurrentHP: 100

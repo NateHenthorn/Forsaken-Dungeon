@@ -22,7 +22,7 @@ public class EnemyHover : MonoBehaviour
     private void Update()
     {
         Vector3 screenPosition = mainCamera.WorldToScreenPoint(this.transform.position - Vector3.up); // Adjust the height as needed
-        nameTextInstance.transform.position = screenPosition;
+        //nameTextInstance.transform.position = screenPosition;
     }
 
     private void OnMouseEnter()

@@ -73,6 +73,7 @@ public class GameLogs : MonoBehaviour
     public int stunDuration = 0;
 
     //BaseStats
+    public int playerActionPoints = 3;
     public int numEnemiesKilled = 0;
     public int playerConstitution = 1;
     public int playerCurrentHP = 100;
@@ -115,8 +116,8 @@ public class GameLogs : MonoBehaviour
     }
     void Start()
     {
-        //currentScene = SceneManager.GetActiveScene();
-        //player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
+        currentScene = SceneManager.GetActiveScene();
+        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
         currentSceneName = checkScene();
         loadRoom();
     }

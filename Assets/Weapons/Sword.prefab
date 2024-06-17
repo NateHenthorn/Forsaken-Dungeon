@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &4335591932327007665
+--- !u!1 &5497594622881856383
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,48 +8,48 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 3616843112844784407}
-  - component: {fileID: 1247097300229570790}
-  - component: {fileID: 2511350945765012966}
-  - component: {fileID: 4693402393154660142}
-  - component: {fileID: 7906220488027309297}
+  - component: {fileID: 6252598462769501879}
+  - component: {fileID: 1140209607686580126}
+  - component: {fileID: 2347185844781377948}
+  - component: {fileID: 2124460505557013556}
+  - component: {fileID: 6539027479730065434}
   m_Layer: 0
-  m_Name: MapCreator
-  m_TagString: MapCreator
+  m_Name: Sword
+  m_TagString: Weapon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &3616843112844784407
+--- !u!4 &6252598462769501879
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4335591932327007665}
+  m_GameObject: {fileID: 5497594622881856383}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 468.2051, y: 217.79852, z: -6.4870286}
+  m_LocalPosition: {x: 747.43964, y: 407.77222, z: -444.01648}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!33 &1247097300229570790
+--- !u!33 &1140209607686580126
 MeshFilter:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4335591932327007665}
+  m_GameObject: {fileID: 5497594622881856383}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!23 &2511350945765012966
+--- !u!23 &2347185844781377948
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4335591932327007665}
+  m_GameObject: {fileID: 5497594622881856383}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -85,13 +85,13 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &4693402393154660142
+--- !u!65 &2124460505557013556
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4335591932327007665}
+  m_GameObject: {fileID: 5497594622881856383}
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -106,34 +106,46 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &7906220488027309297
+--- !u!114 &6539027479730065434
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4335591932327007665}
+  m_GameObject: {fileID: 5497594622881856383}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 84f5df7914a0c0549b7d1c209948d7c4, type: 3}
+  m_Script: {fileID: 11500000, guid: f5081d4df80367e49837285192399b73, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  roomTileSize: 50
-  mapSize: 13
-  difficulty: 0
-  prevLayersKnown: -1
-  layersKnown: 2
-  layer: 0
-  currentRoomX: 0
-  currentRoomY: 0
-  blankRoom: {fileID: 7309701643702443015, guid: e1427a441db43e9499c25949b451cf2a, type: 3}
-  D0RT: {fileID: 6268256524086579752, guid: f5100713fba0e054488faa7fe297b455, type: 3}
-  D1RT: {fileID: 1604298105046458620, guid: 74946a191019d4645bdda23643d802c7, type: 3}
-  D2RT: {fileID: 4918878552569575506, guid: 81e4d30913478654dbdc80733e00ded4, type: 3}
-  D3RT: {fileID: 3417272720493760100, guid: 4d6d6236d6dd8fc40a2f4f4f20841978, type: 3}
-  D4RT: {fileID: 3217105706420357896, guid: ff0f23111c3e47e4bac43a870b172d03, type: 3}
-  startingRoom: {fileID: 8181696001288064707, guid: 4b4066be2385e784db6cb581dbe5a9af, type: 3}
-  completedRoom: {fileID: 8246130064430194549, guid: a04be13ec0f06ce40a5bf8fdcdf5f428, type: 3}
-  bossRoom: {fileID: 0}
-  numTimesLoaded: 0
-  bossRoomMade: 0
+  abilityNum: -1
+  ability: 
+  damageTypeNum: -1
+  damageType: 
+  handsUsed: 1
+  attacks: 1
+  cost: 1
+  description: 
+  name1: 'Item '
+  namePrefix: 
+  nameSuffix: 
+  damage: 1
+  range: 1
+  preNum: 0
+  postNum: 0
+  rarityLevel: 0
+  damageMulitplier: 0
+  critChance: 1
+  isRanged: 0
+  baseName: 
+  magicDamage: 0
+  specialMoveNum: -1
+  specialMove: 'None '
+  acidDamage: 0
+  shockDamage: 0
+  flameDamage: 0
+  toxicDamage: 0
+  frozenDamage: 0
+  bleedDamage: 0
+  piercingDamage: 0
+  chanceToPierce: 0

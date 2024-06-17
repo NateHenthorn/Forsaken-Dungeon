@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 2250171018059213263}
   - component: {fileID: 3070791255643342883}
   - component: {fileID: -2553299763345143022}
+  - component: {fileID: -6928039383544551065}
   m_Layer: 0
   m_Name: Legendary Enemy
   m_TagString: Enemy
@@ -118,12 +119,35 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9486448e1b8c90f43a8ec14e98fb3e6d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  vision: 5
   gameMap: {fileID: -6443137516683889466, guid: 01ac6be6fec63f34fa7ced022445cdcf, type: 3}
-  damageAmount: 0
-  hipPoints: 0
+  damage: 10
+  hitPoints: 100
   moveRate: 0
   coins: 0
+  blockPoints: 1
+  attackRange: 1
   moveSpeed: 0
+  actionPoints: 2
+  actionPointsUsed: 0
+  acidResistance: 1
+  shockResistance: 1
+  flameResistance: 1
+  frozenResistance: 1
+  magicResistance: 1
+  bleedDamage: 0
+  frozenDamage: 0
+  flameDamage: 0
+  shockDamage: 0
+  fireDamage: 0
+  magicDamage: 0
+  piercingDamage: 0
+  acidDamage: 0
+  stunnedFor: 0
+  stunned: 0
+  chanceToStun: 0
+  stunDuration: 0
+  critChance: 0
   player: {fileID: 6154508143398666629, guid: fe8ba28ad668b2a42aece6af3477fe0a, type: 3}
   playerScript: {fileID: 0}
   commonEnemyPrefab: {fileID: 4803402437886278471, guid: d99900ed5fdb457419e958b7af83868a, type: 3}
@@ -134,9 +158,32 @@ MonoBehaviour:
   initiative: 0
   next: {fileID: 0}
   turnStatus: 0
+  hasTakenAction: 0
+  hasMoved: 0
   gameManager: {fileID: -1928845376224171716, guid: c32d260614b3fd240b840f26da36abbe, type: 3}
   turnManager: {fileID: 4773514380834784579, guid: c8963fc452a919d4d82519b57a48c519, type: 3}
   statblock: {fileID: -8641773743410425197, guid: a03cbce62632ef4409a50a21f3b37909, type: 3}
+  statTable: {fileID: 0}
   Next: {fileID: 0}
   name1: 
+  tileSize: 26
+  prefab: {fileID: 0}
+  common: {fileID: 0}
   healthPoints: 0
+--- !u!114 &-6928039383544551065
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7634435598016917836}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 71304cb919d8fe54185551123e218578, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyName: 
+  nameTextPrefab: {fileID: 6093740559495539543, guid: c84fe5eda5351aa4bacda0e603792201, type: 3}
+  nameTextInstance: {fileID: 0}
+  nameText: {fileID: 0}
+  mainCamera: {fileID: 0}

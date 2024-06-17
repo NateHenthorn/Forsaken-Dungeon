@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 2430644768064524911}
   m_Layer: 0
   m_Name: SceneController
-  m_TagString: Untagged
+  m_TagString: SceneController
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -118,3 +118,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d790af0874ce2a2459d00fb302edd244, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  SceneLoadTracker: {fileID: 1773112206522389990, guid: 7e298879c5315da4184705e7440d97a2, type: 3}
+  sceneLoaded: 0
+  numSceneLoaded: 0
+  mapCreator: {fileID: 0}
+  mapManager: {fileID: 0}
+  gameManager: {fileID: 0}
+  roomDif: 0

@@ -41,7 +41,7 @@ public class ShopItem : MonoBehaviour, IPointerClickHandler
         if (GameLogs.Instance.playerCurrentCoin >= cost)
         {
             GameLogs.Instance.playerCurrentCoin -= cost;
-            GameLogs.Instance.pShopItems[GameLogs.Instance.numItems] = item; // Use 'item' instead of 'shopItem.item'
+            GameLogs.Instance.pShopItems[GameLogs.Instance.numItems] = item; 
             GameLogs.Instance.numItems++;
             Debug.Log("Item bought successfully");
             itemBought();

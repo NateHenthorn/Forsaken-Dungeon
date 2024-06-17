@@ -157,7 +157,7 @@ public class Player : MonoBehaviour
 
     void setStats()
     {
-        actionPoints = 3;
+        actionPoints = GameLogs.Instance.playerActionPoints;
         currentHP = GameLogs.Instance.playerCurrentHP;
         coins = GameLogs.Instance.playerCurrentCoin;
         moveRate = 1 * tileSize;
