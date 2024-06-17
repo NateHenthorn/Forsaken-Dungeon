@@ -119,6 +119,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9486448e1b8c90f43a8ec14e98fb3e6d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemyHUD: {fileID: 7335025701699366888, guid: 39f3eb586e3b0c241b49bfcdc1329364, type: 3}
   vision: 5
   gameMap: {fileID: -6443137516683889466, guid: 01ac6be6fec63f34fa7ced022445cdcf, type: 3}
   damage: 10

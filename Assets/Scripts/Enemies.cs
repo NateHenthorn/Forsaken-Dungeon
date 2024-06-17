@@ -7,6 +7,11 @@ using UnityEngine.UI;
 
 public class Enemies : MonoBehaviour
 {
+    //HudImage 
+    public EnemyHudImage enemyHUD;
+    public bool showHud = false;
+
+
     public int vision = 5;
     public GameMap gameMap;
     public int damage = 10;
@@ -73,6 +78,10 @@ public class Enemies : MonoBehaviour
     public int tileSize = 26;
     //Hover
     private EnemyHover enemyHover;
+    //Special Effects
+    public string effect1 = "";
+    public string effect2 = "";
+    public string effect3 = "";
     public Enemies(GameObject prefab)
     {
         thisPrefab = prefab;
@@ -98,7 +107,7 @@ public class Enemies : MonoBehaviour
         canvas = FindObjectOfType<Canvas>();
         turnManager = GameObject.FindGameObjectWithTag("TurnManager").GetComponent<TurnManager>();
         setTurnStatusNum();
-        enemyHover.enemyName = name1;
+        //enemyHover.enemyName = name1;
     }
 
 

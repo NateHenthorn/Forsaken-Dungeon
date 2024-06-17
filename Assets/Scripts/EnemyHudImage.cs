@@ -3,45 +3,20 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-public class HUDImage : MonoBehaviour
+public class EnemyHudImage : MonoBehaviour
 {
-    // Start is called before the first frame update
-
-    public static HUDImage Instance { get; private set; }
-    private void Awake()
-    {
-        if (Instance == null)
-        {
-            Instance = this;
-            DontDestroyOnLoad(gameObject);
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
-    }
-
     //Base Stats
+    public TextMeshProUGUI Name1;
     public TextMeshProUGUI HP;
     public TextMeshProUGUI BP;
     public TextMeshProUGUI MBP;
     public TextMeshProUGUI AP;
-    public TextMeshProUGUI DMG;
-    public TextMeshProUGUI costToLevel;
+    public TextMeshProUGUI Initiative;
     public TextMeshProUGUI range;
     public TextMeshProUGUI coins;
-    public TextMeshProUGUI crit;
-
-    //Stats
-    public TextMeshProUGUI Str;
-    public TextMeshProUGUI Dex;
-    public TextMeshProUGUI Int;
-    public TextMeshProUGUI Con;
-    public TextMeshProUGUI Luck;
-    public TextMeshProUGUI Faith;
+    public TextMeshProUGUI BaseDmg;
 
     //Resistances
-
     public TextMeshProUGUI FlameRes;
     public TextMeshProUGUI ColdRes;
     public TextMeshProUGUI AcidRes;
@@ -55,7 +30,11 @@ public class HUDImage : MonoBehaviour
     public TextMeshProUGUI BleedDmg;
     public TextMeshProUGUI MagicDmg;
     public TextMeshProUGUI PiercingDmg;
-    public TextMeshProUGUI StunChance;
+
+    //Effects
+    public TextMeshProUGUI Effect1;
+    public TextMeshProUGUI Effect2;
+    public TextMeshProUGUI Effect3;
 
 
     void Start()
@@ -72,6 +51,6 @@ public class HUDImage : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 }

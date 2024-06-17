@@ -25,6 +25,7 @@ TagManager:
   - PShopManager
   - PShopItemSetter
   - HUD
+  - EnemyHUD
   layers:
   - Default
   - TransparentFX

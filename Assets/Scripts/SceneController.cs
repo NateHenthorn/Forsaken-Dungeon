@@ -55,8 +55,8 @@ public class SceneController : MonoBehaviour
             MapCreator.Instance.SaveMapData(); // Save map data before leaving the scene
 
         }
-        MapCreator.Instance.isCurrentScene = true;
        SceneManager.LoadScene("Map", LoadSceneMode.Single); // Replace with your map scene name
+        MapCreator.Instance.isCurrentScene = true;
         MapCreator.Instance.loadMap();
 
     }
