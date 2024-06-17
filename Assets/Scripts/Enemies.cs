@@ -120,7 +120,7 @@ public class Enemies : MonoBehaviour
         {
             enemySlain();
         }
-        if (turnManager.turnStatus == initiative && actionPointsUsed < actionPoints && turnManager.state == BattleState.ENEMYTURN)
+        if (turnManager.turnStatus == initiative && actionPointsUsed < actionPoints && turnManager.state == BattleState.ENEMYTURN && !turnManager.turnHasBeenTaken)
         {
             hasGone = true;
             startTurn();
@@ -137,6 +137,7 @@ public class Enemies : MonoBehaviour
         {
             MoveTowardsPlayer();
         }
+        turnManager.turnHasBeenTaken = true;
     }
     protected virtual void MoveTowardsPlayer()
     {

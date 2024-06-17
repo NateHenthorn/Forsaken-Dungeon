@@ -60,18 +60,41 @@ public class HUDImage : MonoBehaviour
 
     void Start()
     {
-        SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
-        spriteRenderer.sortingLayerName = "HUD";
-        spriteRenderer.sortingOrder = 7;
-
-        // Set Sorting Order for UI elements
-        RectTransform rectTransform = GetComponent<RectTransform>();
-        rectTransform.SetSiblingIndex(7);
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        //Set Base Stats
+        HP.text = "" + GameLogs.Instance.playerCurrentHP;
+        BP.text = "" + GameLogs.Instance.playerCurrentBP + "";
+        MBP.text = "" + GameLogs.Instance.playerMagicResist;
+        AP.text = "" + GameLogs.Instance.playerCurrentAP + "";
+        costToLevel.text = "" + GameLogs.Instance.playerCostToLevel + "";
+        DMG.text = GameLogs.Instance.playerItemDamage + "";
+        coins.text = GameLogs.Instance.playerCurrentCoin + "";
+        crit.text = GameLogs.Instance.playerItemCrit + "";
+        range.text = GameLogs.Instance.playerItemRange + "";
+        //Set Stats
+        Str.text = GameLogs.Instance.playerStrength + "";
+        Dex.text = "" + GameLogs.Instance.playerCurrentDex;
+        Int.text = "" + GameLogs.Instance.playersCurrentInt;
+        Con.text = "" + GameLogs.Instance.playerConstitution;
+        Luck.text = "" + GameLogs.Instance.playerCurrentLuck + "";
+        Faith.text = "" + GameLogs.Instance.playerCurrentFaith;
+        //Set Resistances
+        FlameRes.text = "" + GameLogs.Instance.playerFlameResist;
+        ColdRes.text = "" + GameLogs.Instance.playerFrozenResist;
+        AcidRes.text = "" + GameLogs.Instance.playerAcidResist;
+        ShockRes.text = "" + GameLogs.Instance.playerShockResist;
+        //Set Damages
+        FlameDmg.text = "" + GameLogs.Instance.playerFlameDamage;
+        ColdDmg.text = "" + GameLogs.Instance.playerFrozenDamage;
+        AcidDmg.text = "" + GameLogs.Instance.playerAcidDamage;
+        ShockDmg.text = "" + GameLogs.Instance.playerShockDamage;
+        BleedDmg.text = "" + GameLogs.Instance.playerBleedDamage;
+        MagicDmg.text = "" + GameLogs.Instance.playerMagicDamage;
+        PiercingDmg.text = "" + GameLogs.Instance.playerPiercingDamage;
+        StunChance.text = "" + GameLogs.Instance.chanceToStun;
     }
 }

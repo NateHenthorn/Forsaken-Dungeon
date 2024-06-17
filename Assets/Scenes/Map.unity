@@ -931,6 +931,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b95607dbfd6136f45826c61425e910de, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  layerIncreased: 0
   targetSceneName: Map
   creator: {fileID: 1777675709}
   roomDif: 0
