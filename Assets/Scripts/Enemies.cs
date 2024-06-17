@@ -74,14 +74,19 @@ public class Enemies : MonoBehaviour
     //Tile
     protected Tile currentTile;
     public Button Next;
-    public string name1 = "Enemy";
     public int tileSize = 26;
+    //Naming
+    public string name1 = "Enemy";
+    public string baseName = "";
+    public string prefixName = "";
+    public int prefixNum = -1;
     //Hover
     private EnemyHover enemyHover;
     //Special Effects
     public string effect1 = "";
     public string effect2 = "";
     public string effect3 = "";
+    public int damageTypeNum = -1;
     public Enemies(GameObject prefab)
     {
         thisPrefab = prefab;
@@ -488,4 +493,96 @@ public class Enemies : MonoBehaviour
         enemyHUD.Effect3.text = "" + this.effect3;
     }
 
+    protected virtual string pickPrefix(int value)
+    {
+        string rValue = "";
+        damageTypeNum = value;
+        switch (value)
+        {
+            case 0: rValue = "Abnormal "; break;
+            case 1: rValue = "Acidic "; break;
+            case 2: rValue = "Aggressing "; break;
+            case 3: rValue = "Apocalyptic "; break;
+            case 4: rValue = "Ashen "; break;
+            case 5: rValue = "Blackened "; break;
+            case 6: rValue = "Blighted "; break;
+            case 7: rValue = "Bloody "; break;
+            case 8: rValue = "Blue "; break;
+            case 9: rValue = "Bounded "; break;
+            case 10: rValue = "Charged "; break;
+            case 11: rValue = "Charred "; break;
+            case 12: rValue = "Cold "; break;
+            case 13: rValue = "Combative "; break;
+            case 14: rValue = "Conductive "; break;
+            case 15: rValue = "Crazed "; break;
+            case 16: rValue = "Crimson "; break;
+            case 17: rValue = "Crowned "; break;
+            case 18: rValue = "Dire "; break;
+            case 19: rValue = "Duplicating "; break;
+            case 20: rValue = "Eldritch "; break;
+            case 21: rValue = "Electric "; break;
+            case 22: rValue = "Enchanting  "; break;
+            case 23: rValue = "Enormous "; break;
+            case 24: rValue = "Enraging "; break;
+            case 25: rValue = "Fast "; break;
+            case 26: rValue = "Feasting  "; break;
+            case 27: rValue = "Flaming  "; break;
+            case 28: rValue = "Flower-Covered "; break;
+            case 29: rValue = "Flying  "; break;
+            case 30: rValue = "Furious  "; break;
+            case 40: rValue = "Fluttering "; break;
+            case 41: rValue = "Glacial "; break;
+            case 42: rValue = "Grabbing "; break;
+            case 43: rValue = "Graceful  "; break;
+            case 44: rValue = "Green  "; break;
+            case 45: rValue = "Healing "; break;
+            case 46: rValue = "Hel "; break;
+            case 47: rValue = "Hidden "; break;
+            case 48: rValue = "Holy "; break;
+            case 49: rValue = "Icy "; break;
+            case 50: rValue = "Infernal "; break;
+            case 51: rValue = "Invincible "; break;
+            case 52: rValue = "Jade  "; break;
+            case 53: rValue = "Leeching "; break;
+            case 54: rValue = "Luxurious  "; break;
+            case 55: rValue = "Mimic "; break;
+            case 56: rValue = "Morphing "; break;
+            case 57: rValue = "Nether "; break;
+            case 58: rValue = "Nightfallen "; break;
+            case 59: rValue = "Piercing "; break;
+            case 60: rValue = "Plagued "; break;
+            case 61: rValue = "Pulling "; break;
+            case 62: rValue = "Purple  "; break;
+            case 63: rValue = "Rabid  "; break;
+            case 64: rValue = "Reanimating "; break;
+            case 65: rValue = "Resurrecting "; break;
+            case 66: rValue = "Restraining  "; break;
+            case 67: rValue = "Rotting  "; break;
+            case 68: rValue = "Royal "; break;
+            case 69: rValue = "Sacrificing  "; break;
+            case 70: rValue = "Scrawny  "; break;
+            case 71: rValue = "Screeching  "; break;
+            case 72: rValue = "Shocking  "; break;
+            case 73: rValue = "Soaring  "; break;
+            case 74: rValue = "Silky "; break;
+            case 75: rValue = "SkinHarvesting "; break;
+            case 76: rValue = "Slimy  "; break;
+            case 77: rValue = "Smoldering "; break;
+            case 78: rValue = "Statued "; break;
+            case 79: rValue = "Summoning  "; break;
+            case 80: rValue = "Sweeping  "; break;
+            case 81: rValue = "Tenebrous "; break;
+            case 82: rValue = "Thawed  "; break;
+            case 83: rValue = "Thundering  "; break;
+            case 84: rValue = "Tiny "; break;
+            case 85: rValue = "Trading  "; break;
+            case 86: rValue = "Transposing "; break;
+            case 87: rValue = "Wise "; break;
+            default: rValue = ""; break;
+        }
+       // damageType = rValue;
+
+        return rValue;
+
+    }
 }

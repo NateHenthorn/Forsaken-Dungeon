@@ -37,6 +37,10 @@ public class commonEnemy : Enemies
         blockPoints = 3;
         setCoins();
         name1 = "Common Enemy";
+        baseName = name1;
+        prefixNum = Random.Range(0, 100);
+        prefixName = pickPrefix(prefixNum);
+        name1 = prefixName + name1;
         moveSpeed = 1 * tileSize;
         attackRange = (1 * tileSize);
     }
