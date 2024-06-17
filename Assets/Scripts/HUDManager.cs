@@ -38,16 +38,16 @@ public class HUDManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        HP.text = "HP: " + GameLogs.Instance.playerCurrentHP;
-        BP.text = "BP: " + GameLogs.Instance.playerCurrentBP + "";
-        AP.text = "AP: " + GameLogs.Instance.playerCurrentAP + "";
-        Luck.text = "Luck: " + GameLogs.Instance.playerCurrentLuck + "";
-        costToLevel.text = "Cost to Level: " + GameLogs.Instance.playerCostToLevel + "";
-        DMG.text = "Damage: " + GameLogs.Instance.playerItemDamage + "";
-        Str.text = "Strength: " + GameLogs.Instance.playerStrength + "";
-        coins.text = "Coins: " + GameLogs.Instance.playerCurrentCoin + "";
-        crit.text = "Crit: " + GameLogs.Instance.playerItemCrit + "";
-        range.text = "Range: " + GameLogs.Instance.playerItemRange + "";
+        HP.text = "" + GameLogs.Instance.playerCurrentHP;
+        BP.text = "" + GameLogs.Instance.playerCurrentBP + "";
+        AP.text = "" + GameLogs.Instance.playerCurrentAP + "";
+        Luck.text = "" + GameLogs.Instance.playerCurrentLuck + "";
+        costToLevel.text = "" + GameLogs.Instance.playerCostToLevel + "";
+        DMG.text = GameLogs.Instance.playerItemDamage + "";
+        Str.text =  GameLogs.Instance.playerStrength + "";
+        coins.text = GameLogs.Instance.playerCurrentCoin + "";
+        crit.text =  GameLogs.Instance.playerItemCrit + "";
+        range.text = GameLogs.Instance.playerItemRange + "";
 
     }
 }

@@ -24,6 +24,7 @@ TagManager:
   - ShopItem
   - PShopManager
   - PShopItemSetter
+  - HUD
   layers:
   - Default
   - TransparentFX
