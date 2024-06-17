@@ -18,7 +18,7 @@ public class HUDManager : MonoBehaviour
             Destroy(gameObject);
         }
     }
-
+    public HUDImage HUDImage;
     public TextMeshProUGUI HP;
     public TextMeshProUGUI BP;
     public TextMeshProUGUI AP;
@@ -38,6 +38,20 @@ public class HUDManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (HUDImage == null)
+        {
+            HUDImage = GameObject.FindGameObjectWithTag("HUD").GetComponent<HUDImage>();
+            HP = HUDImage.HP;
+            BP = HUDImage.BP;
+            AP = HUDImage.AP;
+            Luck = HUDImage.Luck;
+            costToLevel = HUDImage.costToLevel;
+            DMG = HUDImage.DMG;
+            Str = HUDImage.Str;
+            coins = HUDImage.coins;
+            crit = HUDImage.crit;
+            range = HUDImage.range;
+        }
         HP.text = "" + GameLogs.Instance.playerCurrentHP;
         BP.text = "" + GameLogs.Instance.playerCurrentBP + "";
         AP.text = "" + GameLogs.Instance.playerCurrentAP + "";

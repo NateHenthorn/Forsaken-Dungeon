@@ -5,8 +5,9 @@ public class InventoryController : MonoBehaviour
 {
     public GameObject inventoryUI; // Reference to the inventory UI GameObject
     public List<GameObject> inventory = new List<GameObject>();
-    public GameObject hudImage;
+    public HUDImage hudImage;
     public HUDManager hudManager;
+    public GameObject HUDObject;
     public Canvas canvas;
     public static InventoryController Instance { get; private set; }
     private void Awake()
@@ -25,8 +26,9 @@ public class InventoryController : MonoBehaviour
     private void Start()
     {
         inventoryUI = GameObject.FindGameObjectWithTag("Inventory");
-        hudImage = GameObject.FindGameObjectWithTag("HUD");
+        hudImage = GameObject.FindGameObjectWithTag("HUD").GetComponent<HUDImage>();
         canvas = FindObjectOfType<Canvas>();
+        HUDObject = hudImage.gameObject;
     }
     void Update()
     {
@@ -45,13 +47,14 @@ public class InventoryController : MonoBehaviour
         }
         if (hudImage == null)
         {
-            // hudImage = Instantiate(hudManager, canvas.transform).GetComponent<GameObject>();
+            hudImage = GameObject.FindGameObjectWithTag("HUD").GetComponent<HUDImage>();
+            HUDObject = hudImage.gameObject;
         }
     }
 
     public void ToggleHUD()
     {
-        hudImage.SetActive(!hudImage.activeSelf);
+        HUDObject.SetActive(!HUDObject.activeSelf);
     }
     // Toggle the visibility of the inventory UI
     public void ToggleInventory()

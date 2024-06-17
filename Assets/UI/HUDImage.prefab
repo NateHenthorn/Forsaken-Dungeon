@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8224748323125578102}
   - component: {fileID: 2082379124660541487}
   - component: {fileID: 4470891962505562691}
-  m_Layer: 5
+  m_Layer: 7
   m_Name: range (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -145,7 +145,7 @@ GameObject:
   - component: {fileID: 580597054241866541}
   - component: {fileID: 3326344237413221121}
   - component: {fileID: 3626068662674866096}
-  m_Layer: 5
+  m_Layer: 7
   m_Name: DMG
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -279,7 +279,8 @@ GameObject:
   - component: {fileID: 5530241729197180455}
   - component: {fileID: 7406514391593869457}
   - component: {fileID: 3467779346677156076}
-  m_Layer: 5
+  - component: {fileID: 5399038230236406736}
+  m_Layer: 7
   m_Name: HUDImage
   m_TagString: HUD
   m_Icon: {fileID: 0}
@@ -363,6 +364,28 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &5399038230236406736
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1528306278326303208}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ca90a9c037927ad4d8fc16056aebf857, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  HP: {fileID: 1176133462464359154}
+  BP: {fileID: 6802268653762124319}
+  AP: {fileID: 8777330829519484032}
+  Luck: {fileID: 2030604651623960028}
+  costToLevel: {fileID: 8720552891729186778}
+  DMG: {fileID: 3626068662674866096}
+  Str: {fileID: 1084283705978962320}
+  coins: {fileID: 2694835502898072514}
+  crit: {fileID: 5679201608944733781}
+  range: {fileID: 8010132857627302302}
 --- !u!1 &2768648162743326433
 GameObject:
   m_ObjectHideFlags: 0
@@ -374,7 +397,7 @@ GameObject:
   - component: {fileID: 5951625769498232522}
   - component: {fileID: 8367007378573158685}
   - component: {fileID: 8720552891729186778}
-  m_Layer: 5
+  m_Layer: 7
   m_Name: costToLevel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -508,7 +531,7 @@ GameObject:
   - component: {fileID: 8796717137565002343}
   - component: {fileID: 8711927040394966601}
   - component: {fileID: 2030604651623960028}
-  m_Layer: 5
+  m_Layer: 7
   m_Name: Luck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -642,7 +665,7 @@ GameObject:
   - component: {fileID: 7033258503016123993}
   - component: {fileID: 634675842163730733}
   - component: {fileID: 8010132857627302302}
-  m_Layer: 5
+  m_Layer: 7
   m_Name: range
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -776,7 +799,7 @@ GameObject:
   - component: {fileID: 2383028166156097897}
   - component: {fileID: 4489411418723276569}
   - component: {fileID: 1084283705978962320}
-  m_Layer: 5
+  m_Layer: 7
   m_Name: Str
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -910,7 +933,7 @@ GameObject:
   - component: {fileID: 7247130134726830319}
   - component: {fileID: 2231302905475826261}
   - component: {fileID: 6349235548347409259}
-  m_Layer: 5
+  m_Layer: 7
   m_Name: HP (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1044,7 +1067,7 @@ GameObject:
   - component: {fileID: 2498673231068922480}
   - component: {fileID: 8742945097296009468}
   - component: {fileID: 2694835502898072514}
-  m_Layer: 5
+  m_Layer: 7
   m_Name: coins
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1178,7 +1201,7 @@ GameObject:
   - component: {fileID: 824661588361561671}
   - component: {fileID: 6189450198901081109}
   - component: {fileID: 3010203128117533130}
-  m_Layer: 5
+  m_Layer: 7
   m_Name: Luck (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1312,7 +1335,7 @@ GameObject:
   - component: {fileID: 4119472278865603663}
   - component: {fileID: 9000376409725001828}
   - component: {fileID: 8777330829519484032}
-  m_Layer: 5
+  m_Layer: 7
   m_Name: AP
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1446,7 +1469,7 @@ GameObject:
   - component: {fileID: 3045931774036815895}
   - component: {fileID: 153123138391335295}
   - component: {fileID: 6802268653762124319}
-  m_Layer: 5
+  m_Layer: 7
   m_Name: BP
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1580,7 +1603,7 @@ GameObject:
   - component: {fileID: 6029457375840718579}
   - component: {fileID: 8250062218183346321}
   - component: {fileID: 4995883458246606854}
-  m_Layer: 5
+  m_Layer: 7
   m_Name: DMG (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1714,7 +1737,7 @@ GameObject:
   - component: {fileID: 5607255974198576229}
   - component: {fileID: 3483958072647790334}
   - component: {fileID: 5679201608944733781}
-  m_Layer: 5
+  m_Layer: 7
   m_Name: crit
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1848,7 +1871,7 @@ GameObject:
   - component: {fileID: 1106483532011610630}
   - component: {fileID: 436728022722811083}
   - component: {fileID: 8534664738715757446}
-  m_Layer: 5
+  m_Layer: 7
   m_Name: costToLevel (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1982,7 +2005,7 @@ GameObject:
   - component: {fileID: 8434134012634188263}
   - component: {fileID: 3775458270607529318}
   - component: {fileID: 3370768054346378593}
-  m_Layer: 5
+  m_Layer: 7
   m_Name: AP (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2116,7 +2139,7 @@ GameObject:
   - component: {fileID: 797287281089505119}
   - component: {fileID: 263335579104559560}
   - component: {fileID: 7990618948829323013}
-  m_Layer: 5
+  m_Layer: 7
   m_Name: crit (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2250,7 +2273,7 @@ GameObject:
   - component: {fileID: 7763897865306147955}
   - component: {fileID: 6051142297927612464}
   - component: {fileID: 994544331434745362}
-  m_Layer: 5
+  m_Layer: 7
   m_Name: BP (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2384,7 +2407,7 @@ GameObject:
   - component: {fileID: 276515717016756799}
   - component: {fileID: 6027675365392798348}
   - component: {fileID: 4572921819642043553}
-  m_Layer: 5
+  m_Layer: 7
   m_Name: Str (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2518,7 +2541,7 @@ GameObject:
   - component: {fileID: 7224200394366668855}
   - component: {fileID: 2082572673264938395}
   - component: {fileID: 1176133462464359154}
-  m_Layer: 5
+  m_Layer: 7
   m_Name: HP
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2652,7 +2675,7 @@ GameObject:
   - component: {fileID: 666248585139531952}
   - component: {fileID: 9134649275397694520}
   - component: {fileID: 2988052316135610606}
-  m_Layer: 5
+  m_Layer: 7
   m_Name: coins (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}

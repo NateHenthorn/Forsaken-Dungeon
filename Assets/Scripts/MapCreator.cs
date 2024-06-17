@@ -41,6 +41,7 @@ public class MapCreator : MonoBehaviour
     public GameObject bossRoom; // 102
     public int numTimesLoaded = 0;
     public bool bossRoomMade = false;
+    public bool isCurrentScene = true;
     int[,] map;
     GameObject[,] mapObjects;
 
@@ -56,11 +57,15 @@ public class MapCreator : MonoBehaviour
     {
         currentRoomX = GameLogs.Instance.currentRoomX;
         currentRoomY = GameLogs.Instance.currentRoomY;
-        if (prevLayersKnown != layersKnown)
+        if (prevLayersKnown != layersKnown && isCurrentScene)
         {
             roomSetter();
             prevLayersKnown = layersKnown;
 
+        }
+        if (!isCurrentScene)
+        {
+            DestroyMap();
         }
     }
 
@@ -333,4 +338,9 @@ public class MapCreator : MonoBehaviour
     {
         roomSetter();
     }
+
+    public void DestroyMap()
+    {
+        ClearMap();
+}
 }

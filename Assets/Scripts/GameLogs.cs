@@ -5,7 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class GameLogs : MonoBehaviour
 {
-
+    //GameManage Stuff
+    public int roomDifficultLevel = 0;
     //For Map Creater
     public int numLayers = 0;
     public int currentRoomX = 0;
@@ -117,7 +118,7 @@ public class GameLogs : MonoBehaviour
     void Start()
     {
         currentScene = SceneManager.GetActiveScene();
-        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
+       // player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
         currentSceneName = checkScene();
         loadRoom();
     }

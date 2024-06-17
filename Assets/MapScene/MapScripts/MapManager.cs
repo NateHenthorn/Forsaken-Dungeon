@@ -41,6 +41,7 @@ public class MapManager : MonoBehaviour
         tileSelected = true;
         GameLogs.Instance.currentRoomX = tile.xCord;
         GameLogs.Instance.currentRoomY = tile.yCord;
+        GameLogs.Instance.roomDifficultLevel = tile.roomDifficulty;
     }
 
     public void loadMap()
