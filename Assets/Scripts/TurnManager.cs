@@ -55,6 +55,10 @@ public class TurnManager : MonoBehaviour
     {
         numEnemies = GameManager.numberOfEntities;
         if (turnStatus < 0) { turnStatus = turnStatusNum + 1; }
+        if (turnStatus == playerInitiative)
+        {
+            state = BattleState.PLAYERTURN;
+        }
         if (gameMap.mapCreated)
         {
             switch (state)

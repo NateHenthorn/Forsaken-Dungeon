@@ -7,7 +7,7 @@ public class EnemyHUDController : MonoBehaviour
     public GameObject hudPrefab; // Reference to the HUD prefab
     public Canvas canvas; // Reference to the Canvas
     public EnemyHudImage hudImage;
-    private GameObject currentHUD; // Reference to the current HUD instance
+    private EnemyHudImage currentHUD; // Reference to the current HUD instance
 
 
     //Base Stats
@@ -74,21 +74,23 @@ public class EnemyHUDController : MonoBehaviour
         // Ensure the HUD is hidden initially
         if (currentHUD == null)
         {
-            currentHUD = Instantiate(hudPrefab, canvas.transform);
+            currentHUD = Instantiate(hudImage, canvas.transform);
         }
-        currentHUD.SetActive(false);
+        currentHUD.gameObject.SetActive(false);
     }
 
     public void ShowHUD(Enemies enemy)
     {
+        enemy.enemyHUD = this.hudImage;
+        enemy.setHUDStats();
+         
         if (currentHUD == null)
         {
-            currentHUD = Instantiate(hudPrefab, canvas.transform);
+            currentHUD = Instantiate(hudImage, canvas.transform);
         }
-
-        currentHUD.SetActive(true);
+        currentHUD.setHUDStats(enemy);
+        currentHUD.gameObject.SetActive(true);
         currentHUD.transform.position = new Vector3(Screen.width - 1000, Screen.height - 510, 0); // Adjust this as needed
-        setHUDStats(enemy);
 
     }
 
@@ -130,7 +132,7 @@ public class EnemyHUDController : MonoBehaviour
     {
         if (currentHUD != null)
         {
-            currentHUD.SetActive(false);
+            currentHUD.gameObject.SetActive(false);
         }
     }
 }

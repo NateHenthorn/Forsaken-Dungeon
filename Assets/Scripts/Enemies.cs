@@ -113,6 +113,10 @@ public class Enemies : MonoBehaviour
 
     protected virtual void Update()
     {
+        if (initiative == playerScript.initiative)
+        {
+            initiative--;
+        }
         if (hitPoints <= 0)
         {
             enemySlain();
@@ -448,6 +452,40 @@ public class Enemies : MonoBehaviour
         // statTable.updateStatTable(statBlockNum);
         GameLogs.Instance.numEnemiesKilled++;
         Destroy(this.gameObject);
+    }
+
+    public virtual void setHUDStats()
+    {
+        //Base Stats
+        enemyHUD.Name1.text = this.name1;
+        enemyHUD.HP.text = this.hitPoints + "";
+        enemyHUD.BP.text = this.blockPoints + "";
+        enemyHUD.MBP.text = "" + this.magicResistance + "";
+        enemyHUD.AP.text = "" + this.actionPoints;
+        enemyHUD.Initiative.text = "" + this.initiative;
+        enemyHUD.range.text = "" + this.attackRange;
+        enemyHUD.coins.text = "" + this.coins;
+        enemyHUD.BaseDmg.text = this.damage + "";
+
+        //Resistances
+        enemyHUD.FlameRes.text = "" + this.flameResistance;
+        enemyHUD.ColdRes.text = "" + this.frozenResistance;
+        enemyHUD.AcidRes.text = "" + this.acidResistance;
+        enemyHUD.ShockRes.text = "" + this.shockResistance;
+
+        //Damages
+        enemyHUD.FlameDmg.text = "" + this.flameDamage;
+        enemyHUD.ColdDmg.text = "" + this.frozenDamage;
+        enemyHUD.AcidDmg.text = "" + this.acidDamage;
+        enemyHUD.ShockDmg.text = "" + this.shockDamage;
+        enemyHUD.BleedDmg.text = "" + this.bleedDamage;
+        enemyHUD.MagicDmg.text = "" + this.magicDamage;
+        enemyHUD.PiercingDmg.text = "" + this.piercingDamage;
+
+        //Effects
+        enemyHUD.Effect1.text = "" + this.effect1;
+        enemyHUD.Effect2.text = "" + this.effect2;
+        enemyHUD.Effect3.text = "" + this.effect3;
     }
 
 }
