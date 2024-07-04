@@ -43,7 +43,6 @@ public class PShotItemButton : MonoBehaviour
             GameLogs.Instance.pShopItems[GameLogs.Instance.numItems] = shopItem.item;
             GameLogs.Instance.numItems++;
             Debug.Log("Item bought successfully");
-            Destroy(shopItem.gameObject);
         }
         else
         {

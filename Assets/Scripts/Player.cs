@@ -122,7 +122,7 @@ public class Player : MonoBehaviour
         turnManager = FindObjectOfType<TurnManager>();
         gameLogs = GameObject.FindGameObjectWithTag("GameLogs").GetComponent<GameLogs>();
         setStats();
-        //makeStatBlock();
+        makeStatBlock();
         if (Next != null)
         {
             Next.onClick.AddListener(OnNextButtonClick);
@@ -229,10 +229,12 @@ public class Player : MonoBehaviour
 
     public void setStatBlock()
     {
-       GameLogs.Instance.playerCurrentHP = currentHP;
-        //GameLogs.Instance.playerDmg = dmg;
-        //thisStatBlock.SE.text = levelPoints;
-        GameLogs.Instance.playerCurrentCoin = coins;
+        thisStatBlock.setInitiative(initiative);
+        thisStatBlock.name1.text = "Player";
+        thisStatBlock.HP.text = "" + currentHP;
+        thisStatBlock.DMG.text = "" + dmg;
+        thisStatBlock.SE.text = "" + levelPoints;
+        thisStatBlock.coins.text = "" + coins;
 
     }
 
@@ -435,7 +437,6 @@ public class Player : MonoBehaviour
         {
             becomeStunned(stunDiration);
         }
-        setStatBlock();
     }
     public void becomeStunned(int diration)
     {

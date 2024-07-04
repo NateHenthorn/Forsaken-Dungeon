@@ -43,7 +43,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3292557996796934544}
-  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+  m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!23 &8136372927187006714
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -119,8 +119,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c841567032a97741a55cfd142b91715, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyHUD: {fileID: 0}
-  showHud: 0
+  enemyHUD: {fileID: 7335025701699366888, guid: 39f3eb586e3b0c241b49bfcdc1329364, type: 3}
   vision: 5
   gameMap: {fileID: -6443137516683889466, guid: 01ac6be6fec63f34fa7ced022445cdcf, type: 3}
   damage: 10
@@ -169,9 +168,6 @@ MonoBehaviour:
   Next: {fileID: 0}
   name1: Enemy
   tileSize: 26
-  effect1: 
-  effect2: 
-  effect3: 
 --- !u!114 &7545771300342356396
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -184,3 +180,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 71304cb919d8fe54185551123e218578, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemyName: 
+  nameTextPrefab: {fileID: 6093740559495539543, guid: c84fe5eda5351aa4bacda0e603792201, type: 3}
+  nameTextInstance: {fileID: 0}
+  nameText: {fileID: 0}
+  mainCamera: {fileID: 0}

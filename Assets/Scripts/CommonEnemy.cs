@@ -14,13 +14,13 @@ public class commonEnemy : Enemies
     protected override void Start()
     {
         base.Start();
-        setStats();
+        setStats(); 
         canvas = FindObjectOfType<Canvas>();
         initiative = setInitiative();
         player = GameObject.FindGameObjectWithTag("Player");
         playerScript = player.GetComponent<Player>();
         gameManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
-        //makeStatBlock();
+        makeStatBlock();
         turnManager.setTurnStatusNum(initiative);
         InitializeEnemyOnTile();
     }
@@ -37,13 +37,8 @@ public class commonEnemy : Enemies
         blockPoints = 3;
         setCoins();
         name1 = "Common Enemy";
-        baseName = name1;
-        prefixNum = Random.Range(0, 100);
-        prefixName = pickPrefix(prefixNum);
-        name1 = prefixName + name1;
         moveSpeed = 1 * tileSize;
         attackRange = (1 * tileSize);
-        applySpecialEffect();
     }
 
     protected void setCoins()

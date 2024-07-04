@@ -11,7 +11,7 @@ public class continueButtonHandler : MonoBehaviour
     {
         if (controller == null)
         {
-            controller = FindObjectOfType<SceneController>();
+            controller = GetComponent<SceneController>();
         }
     }
     public void continueOn()
