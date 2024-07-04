@@ -1753,7 +1753,7 @@ GameObject:
   - component: {fileID: 1608904262068580776}
   - component: {fileID: 4800797762518946225}
   - component: {fileID: 1223791296834211061}
-  - component: {fileID: 3871121368732297766}
+  - component: {fileID: 7335025701699366888}
   m_Layer: 7
   m_Name: EnemyHud
   m_TagString: EnemyHUD
@@ -1865,7 +1865,7 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &3871121368732297766
+--- !u!114 &7335025701699366888
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1874,7 +1874,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 3482155787925036988}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 70966e1d632750740bfd868e37fefba8, type: 3}
+  m_Script: {fileID: 11500000, guid: 471e5f9d64b38dd419ad8c3fba0b7e1b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   Name1: {fileID: 2739277036812325626}

@@ -55,7 +55,7 @@ public class CameraFollow : MonoBehaviour
             }
 
         }
-        Vector3 desiredPosition = new Vector3(185, player.position.y + offset.y - 100, -25);
+        Vector3 desiredPosition = new Vector3(player.position.x + leftScreenOffset, player.position.y + offset.y - 100, -25);
         Vector3 smoothedPosition = Vector3.Lerp(transform.position, desiredPosition, smoothSpeed);
         transform.position = smoothedPosition;
         // Smoothly zoom in

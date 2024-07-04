@@ -39,45 +39,18 @@ public class EnemyHudImage : MonoBehaviour
 
     void Start()
     {
+        SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
+        spriteRenderer.sortingLayerName = "HUD";
+        spriteRenderer.sortingOrder = 7;
+
+        // Set Sorting Order for UI elements
+        RectTransform rectTransform = GetComponent<RectTransform>();
+        rectTransform.SetSiblingIndex(7);
     }
 
     // Update is called once per frame
     void Update()
     {
 
-    }
-
-    public void setHUDStats(Enemies enemy)
-    {
-        //Base Stats
-        Name1.text = enemy.name1;
-        HP.text = enemy.hitPoints + "";
-        BP.text = enemy.blockPoints + "";
-        MBP.text = "" + enemy.magicResistance + "";
-        AP.text = "" + enemy.actionPoints;
-        Initiative.text = "" + enemy.initiative;
-        range.text = "" + enemy.attackRange;
-        coins.text = "" + enemy.coins;
-        BaseDmg.text = enemy.damage + "";
-
-        //Resistances
-        FlameRes.text = "" + enemy.flameResistance;
-        ColdRes.text = "" + enemy.frozenResistance;
-        AcidRes.text = "" + enemy.acidResistance;
-        ShockRes.text = "" + enemy.shockResistance;
-
-        //Damages
-        FlameDmg.text = "" + enemy.flameDamage;
-        ColdDmg.text = "" + enemy.frozenDamage;
-        AcidDmg.text = "" + enemy.acidDamage;
-        ShockDmg.text = "" + enemy.shockDamage;
-        BleedDmg.text = "" + enemy.bleedDamage;
-        MagicDmg.text = "" + enemy.magicDamage;
-        PiercingDmg.text = "" + enemy.piercingDamage;
-
-        //Effects
-        Effect1.text = "" + enemy.effect1;
-        Effect2.text = "" + enemy.effect2;
-        Effect3.text = "" + enemy.effect3;
     }
 }
