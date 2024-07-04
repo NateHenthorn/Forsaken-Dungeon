@@ -14,7 +14,7 @@ public class commonEnemy : Enemies
     protected override void Start()
     {
         base.Start();
-        setStats();
+        setStats(); 
         canvas = FindObjectOfType<Canvas>();
         initiative = setInitiative();
         player = GameObject.FindGameObjectWithTag("Player");
