@@ -342,5 +342,5 @@ public class MapCreator : MonoBehaviour
     public void DestroyMap()
     {
         ClearMap();
-}
+    }
 }

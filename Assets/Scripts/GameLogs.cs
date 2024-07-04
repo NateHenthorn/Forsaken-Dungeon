@@ -123,7 +123,7 @@ public class GameLogs : MonoBehaviour
     void Start()
     {
         currentScene = SceneManager.GetActiveScene();
-       // player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
+        // player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
         currentSceneName = checkScene();
         loadRoom();
     }

@@ -55,7 +55,7 @@ public class SceneController : MonoBehaviour
             MapCreator.Instance.SaveMapData(); // Save map data before leaving the scene
 
         }
-       SceneManager.LoadScene("Map", LoadSceneMode.Single); // Replace with your map scene name
+        SceneManager.LoadScene("Map", LoadSceneMode.Single); // Replace with your map scene name
         MapCreator.Instance.isCurrentScene = true;
         MapCreator.Instance.loadMap();
 
@@ -80,11 +80,11 @@ public class SceneController : MonoBehaviour
         // if (MapCreator.Instance != null)
         // {
         MapCreator.Instance.isCurrentScene = false;
-            MapCreator.Instance.DestroyMap();
+        MapCreator.Instance.DestroyMap();
 
-       // }
+        // }
         SceneManager.LoadScene("Room", LoadSceneMode.Single);
         gameManager = FindObjectOfType<GameManager>();
-       //GameManager.Instance.difLevel = roomDif;
+        //GameManager.Instance.difLevel = roomDif;
     }
 }

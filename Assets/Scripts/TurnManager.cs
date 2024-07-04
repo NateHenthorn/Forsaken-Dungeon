@@ -30,6 +30,7 @@ public class TurnManager : MonoBehaviour
     public int playerInitiative;
     public Player player1;
     public int turnStatus = -1;
+    public bool turnHasBeenTaken = false;
 
     public static TurnManager Instance { get; private set; }
 
@@ -55,6 +56,10 @@ public class TurnManager : MonoBehaviour
     {
         numEnemies = GameManager.numberOfEntities;
         if (turnStatus < 0) { turnStatus = turnStatusNum + 1; }
+        if (turnStatus == playerInitiative)
+        {
+            state = BattleState.PLAYERTURN;
+        }
         if (gameMap.mapCreated)
         {
             switch (state)
@@ -127,7 +132,7 @@ public class TurnManager : MonoBehaviour
 
     IEnumerator EnemysTurn()
     {
-        
+
         yield return new WaitForSeconds(0.2f); // Delay between enemy turns
         decreaseTurnStatus();
     }
@@ -136,11 +141,11 @@ public class TurnManager : MonoBehaviour
     {
         if (turnStatus != playerInitiative)
         {
-    turnStatus--;
+            turnStatus--;
+            turnHasBeenTaken = false;
         }
-        
     }
-    }
+}
 
 
 

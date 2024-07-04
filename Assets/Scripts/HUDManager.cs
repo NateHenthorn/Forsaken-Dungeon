@@ -58,7 +58,36 @@ public class HUDManager : MonoBehaviour
 
     void Start()
     {
-
+        HP = HUDImage.HP;
+        BP = HUDImage.BP;
+        MBP = HUDImage.MBP;
+        AP = HUDImage.AP;
+        costToLevel = HUDImage.costToLevel;
+        DMG = HUDImage.DMG;
+        coins = HUDImage.coins;
+        crit = HUDImage.crit;
+        range = HUDImage.range;
+        //Stats
+        Luck = HUDImage.Luck;
+        Str = HUDImage.Str;
+        Dex = HUDImage.Dex;
+        Int = HUDImage.Int;
+        Con = HUDImage.Con;
+        Faith = HUDImage.Faith;
+        //Resistnaces
+        FlameRes = HUDImage.FlameRes;
+        ColdRes = HUDImage.ColdRes;
+        AcidRes = HUDImage.AcidRes;
+        ShockRes = HUDImage.ShockRes;
+        //Damages
+        FlameDmg = HUDImage.FlameDmg;
+        ColdDmg = HUDImage.ColdDmg;
+        AcidDmg = HUDImage.AcidDmg;
+        ShockDmg = HUDImage.ShockDmg;
+        BleedDmg = HUDImage.BleedDmg;
+        MagicDmg = HUDImage.MagicDmg;
+        PiercingDmg = HUDImage.PiercingDmg;
+        StunChance = HUDImage.StunChance;
     }
 
     // Update is called once per frame
@@ -107,7 +136,7 @@ public class HUDManager : MonoBehaviour
         costToLevel.text = "" + GameLogs.Instance.playerCostToLevel + "";
         DMG.text = GameLogs.Instance.playerItemDamage + "";
         coins.text = GameLogs.Instance.playerCurrentCoin + "";
-        crit.text =  GameLogs.Instance.playerItemCrit + "";
+        crit.text = GameLogs.Instance.playerItemCrit + "";
         range.text = GameLogs.Instance.playerItemRange + "";
         //Set Stats
         Str.text = GameLogs.Instance.playerStrength + "";

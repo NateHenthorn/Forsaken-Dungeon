@@ -39,9 +39,10 @@ public class PShopItem : MonoBehaviour
 
     public virtual void rStart()
     {
-       Start();
+        Start();
     }
-     protected virtual void Start() {
+    protected virtual void Start()
+    {
         baseName = name1;
         setCost();
         setDamage();
