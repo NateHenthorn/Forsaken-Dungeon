@@ -232,7 +232,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 3482155787925036988, guid: ae73806fd1d653643b62487e81765003, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 386702790}
   m_SourcePrefab: {fileID: 100100000, guid: ae73806fd1d653643b62487e81765003, type: 3}
 --- !u!1 &55855644
 GameObject:
@@ -483,11 +486,51 @@ MonoBehaviour:
   MagicDmg: {fileID: 464344987}
   PiercingDmg: {fileID: 1373701794}
   StunChance: {fileID: 490195958}
+--- !u!1 &386702785 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3482155787925036988, guid: ae73806fd1d653643b62487e81765003, type: 3}
+  m_PrefabInstance: {fileID: 21894909}
+  m_PrefabAsset: {fileID: 0}
 --- !u!224 &386702786 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 1608904262068580776, guid: ae73806fd1d653643b62487e81765003, type: 3}
   m_PrefabInstance: {fileID: 21894909}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &386702790
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 386702785}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 70966e1d632750740bfd868e37fefba8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name1: {fileID: 0}
+  HP: {fileID: 0}
+  BP: {fileID: 0}
+  MBP: {fileID: 0}
+  AP: {fileID: 0}
+  Initiative: {fileID: 0}
+  range: {fileID: 0}
+  coins: {fileID: 0}
+  BaseDmg: {fileID: 0}
+  FlameRes: {fileID: 0}
+  ColdRes: {fileID: 0}
+  AcidRes: {fileID: 0}
+  ShockRes: {fileID: 0}
+  FlameDmg: {fileID: 0}
+  ColdDmg: {fileID: 0}
+  AcidDmg: {fileID: 0}
+  ShockDmg: {fileID: 0}
+  BleedDmg: {fileID: 0}
+  MagicDmg: {fileID: 0}
+  PiercingDmg: {fileID: 0}
+  Effect1: {fileID: 0}
+  Effect2: {fileID: 0}
+  Effect3: {fileID: 0}
 --- !u!114 &464344987 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5100230259457166076, guid: d293cdd4b24836a4da25cf805a55618f, type: 3}
