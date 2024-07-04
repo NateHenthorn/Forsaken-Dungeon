@@ -5,6 +5,12 @@ using UnityEngine;
 
 public class PShopItem : MonoBehaviour
 {
+    //For Armor
+    public string armorLevel = "Light";
+    public int protectionLevel = 1;
+    public string armorType = "Basic";
+
+
     public int abilityNum = -1;
     public string ability = "";
     public int damageTypeNum = -1;

@@ -11,65 +11,47 @@ public class EnemySpawner : MonoBehaviour
     public GameObject forsakenEnemyPrefab;
     public Button nextButton;
     public TurnManager turnManager;
+
     // Start is called before the first frame update
     public void spawnEnemy(int x, int y, int enemyNum)
     {
+        Quaternion upsideDownRotation = Quaternion.Euler(180, 0, 0);
+
         if (enemyNum == 0)
         {
-            GameObject enemy = Instantiate(commonEnemyPrefab, new Vector3(x, y, 0), Quaternion.identity);
-            enemy.transform.position = new Vector3(x, y, 0);
-
-            Enemies playerScript = enemy.GetComponent<commonEnemy>();
-            if (playerScript != null)
+            GameObject enemy = Instantiate(commonEnemyPrefab, new Vector3(x, y, 0), upsideDownRotation);
+            Enemies enemyScript = enemy.GetComponent<commonEnemy>();
+            if (enemyScript != null)
             {
-                playerScript.Next = nextButton;
-            }
-            else
-            {
+                enemyScript.Next = nextButton;
             }
         }
-        if (enemyNum == 1)
+        else if (enemyNum == 1)
         {
-            GameObject enemy = Instantiate(rareEnemyPrefab, new Vector3(x, y, 0), Quaternion.identity);
-            enemy.transform.position = new Vector3(x, y, 0);
-
+            GameObject enemy = Instantiate(rareEnemyPrefab, new Vector3(x, y, 0), upsideDownRotation);
             Enemies enemyScript = enemy.GetComponent<rareEnemy>();
             if (enemyScript != null)
             {
                 enemyScript.Next = nextButton;
             }
-            else
-            {
-            }
         }
-        if (enemyNum == 2)
+        else if (enemyNum == 2)
         {
-            GameObject enemy = Instantiate(legendaryEnemyPrefab, new Vector3(x, y, 0), Quaternion.identity);
-            enemy.transform.position = new Vector3(x, y, 0);
-
+            GameObject enemy = Instantiate(legendaryEnemyPrefab, new Vector3(x, y, 0), upsideDownRotation);
             Enemies enemyScript = enemy.GetComponent<legendaryEnemy>();
             if (enemyScript != null)
             {
                 enemyScript.Next = nextButton;
             }
-            else
-            {
-            }
         }
-        if (enemyNum == 3)
+        else if (enemyNum == 3)
         {
-            GameObject enemy = Instantiate(forsakenEnemyPrefab, new Vector3(x, y, 0), Quaternion.identity);
-            enemy.transform.position = new Vector3(x, y, 0);
-
+            GameObject enemy = Instantiate(forsakenEnemyPrefab, new Vector3(x, y, 0), upsideDownRotation);
             Enemies enemyScript = enemy.GetComponent<forsakenEnemy>();
             if (enemyScript != null)
             {
                 enemyScript.Next = nextButton;
             }
-            else
-            {
-            }
         }
-
     }
 }

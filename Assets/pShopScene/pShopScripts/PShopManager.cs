@@ -78,7 +78,7 @@ public class PShopManager : MonoBehaviour
 
     public ShopItem setShopItem(ShopItem shopItem)
     {
-        int randNum = Random.Range(0, 24);
+        int randNum = Random.Range(0, 42);
         shopItem.item = itemSetter.pickItem(randNum);
         shopItem.cost = shopItem.item.cost;
         shopItem.Cost.text = shopItem.item.cost + "g";
