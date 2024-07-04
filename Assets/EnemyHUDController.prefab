@@ -115,8 +115,32 @@ MonoBehaviour:
   m_GameObject: {fileID: 9094469631972122834}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 882ade0c58c9ed94e85ecd08fbe525c1, type: 3}
+  m_Script: {fileID: 11500000, guid: fd595cf9ddc93004ea29a10a0a915657, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hudPrefab: {fileID: 3482155787925036988, guid: 39f3eb586e3b0c241b49bfcdc1329364, type: 3}
+  hudPrefab: {fileID: 3482155787925036988, guid: ae73806fd1d653643b62487e81765003, type: 3}
   canvas: {fileID: 0}
+  hudImage: {fileID: 7335025701699366888, guid: ae73806fd1d653643b62487e81765003, type: 3}
+  Name1: {fileID: 0}
+  HP: {fileID: 0}
+  BP: {fileID: 0}
+  MBP: {fileID: 0}
+  AP: {fileID: 0}
+  Initiative: {fileID: 0}
+  range: {fileID: 0}
+  coins: {fileID: 0}
+  BaseDmg: {fileID: 0}
+  FlameRes: {fileID: 0}
+  ColdRes: {fileID: 0}
+  AcidRes: {fileID: 0}
+  ShockRes: {fileID: 0}
+  FlameDmg: {fileID: 0}
+  ColdDmg: {fileID: 0}
+  AcidDmg: {fileID: 0}
+  ShockDmg: {fileID: 0}
+  BleedDmg: {fileID: 0}
+  MagicDmg: {fileID: 0}
+  PiercingDmg: {fileID: 0}
+  Effect1: {fileID: 0}
+  Effect2: {fileID: 0}
+  Effect3: {fileID: 0}
