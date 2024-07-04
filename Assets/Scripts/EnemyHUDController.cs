@@ -7,7 +7,7 @@ public class EnemyHUDController : MonoBehaviour
     public GameObject hudPrefab; // Reference to the HUD prefab
     public Canvas canvas; // Reference to the Canvas
     public EnemyHudImage hudImage;
-    private GameObject currentHUD; // Reference to the current HUD instance
+    public EnemyHudImage currentHUD; // Reference to the current HUD instance
 
 
     //Base Stats
@@ -42,60 +42,62 @@ public class EnemyHUDController : MonoBehaviour
     public TextMeshProUGUI Effect3;
     private void Start()
     {
-    Name1 = hudImage.Name1;
-    HP = hudImage.HP;
-    BP = hudImage.BP;
-    MBP = hudImage.MBP;
-    AP = hudImage.AP;
-    Initiative = hudImage.Initiative;
-    range = hudImage.range;
-    coins = hudImage.coins;
-    BaseDmg = hudImage.BaseDmg;
+        Name1 = hudImage.Name1;
+        HP = hudImage.HP;
+        BP = hudImage.BP;
+        MBP = hudImage.MBP;
+        AP = hudImage.AP;
+        Initiative = hudImage.Initiative;
+        range = hudImage.range;
+        coins = hudImage.coins;
+        BaseDmg = hudImage.BaseDmg;
 
-    //Resistances
-    FlameRes = hudImage.FlameRes;
-    ColdRes = hudImage.ColdRes;
-    AcidRes = hudImage.AcidRes;
-    ShockRes = hudImage.ShockRes;
+        //Resistances
+        FlameRes = hudImage.FlameRes;
+        ColdRes = hudImage.ColdRes;
+        AcidRes = hudImage.AcidRes;
+        ShockRes = hudImage.ShockRes;
 
-    //Damages
-    FlameDmg = hudImage.FlameDmg;
-    ColdDmg = hudImage.ColdDmg;
-    AcidDmg = hudImage.AcidDmg;
-    ShockDmg = hudImage.ShockDmg;
-    BleedDmg = hudImage.BleedDmg;
-    MagicDmg = hudImage.MagicDmg;
-    PiercingDmg = hudImage.PiercingDmg;
+        //Damages
+        FlameDmg = hudImage.FlameDmg;
+        ColdDmg = hudImage.ColdDmg;
+        AcidDmg = hudImage.AcidDmg;
+        ShockDmg = hudImage.ShockDmg;
+        BleedDmg = hudImage.BleedDmg;
+        MagicDmg = hudImage.MagicDmg;
+        PiercingDmg = hudImage.PiercingDmg;
 
-    //Effects
-    Effect1 = hudImage.Effect1;
-    Effect2 = hudImage.Effect2;
-    Effect3 = hudImage.Effect3;
+        //Effects
+        Effect1 = hudImage.Effect1;
+        Effect2 = hudImage.Effect2;
+        Effect3 = hudImage.Effect3;
         // Ensure the HUD is hidden initially
         if (currentHUD == null)
         {
-            currentHUD = Instantiate(hudPrefab, canvas.transform);
+            currentHUD = Instantiate(hudImage, canvas.transform);
         }
-        currentHUD.SetActive(false);
+        currentHUD.gameObject.SetActive(false);
     }
 
     public void ShowHUD(Enemies enemy)
     {
+        enemy.enemyHUD = this.hudImage;
+        enemy.setHUDStats();
+
         if (currentHUD == null)
         {
-            currentHUD = Instantiate(hudPrefab, canvas.transform);
+            currentHUD = Instantiate(hudImage, canvas.transform);
         }
-
-        currentHUD.SetActive(true);
-        currentHUD.transform.position = new Vector3(Screen.width - 1000, Screen.height - 510, 0); // Adjust this as needed
-        setHUDStats(enemy);
+        currentHUD.setHUDStats(enemy);
+        currentHUD.gameObject.SetActive(true);
+        //currentHUD.transform.position = new Vector3(Screen.width - 1080, Screen.height - 510, 0); // Adjust this as needed
 
     }
 
     public void setHUDStats(Enemies enemy)
     {
-         //Base Stats
-    Name1.text = enemy.name1;
+        //Base Stats
+        Name1.text = enemy.name1;
         HP.text = enemy.hitPoints + "";
         BP.text = enemy.blockPoints + "";
         MBP.text = "" + enemy.magicResistance + "";
@@ -130,7 +132,7 @@ public class EnemyHUDController : MonoBehaviour
     {
         if (currentHUD != null)
         {
-            currentHUD.SetActive(false);
+            currentHUD.gameObject.SetActive(false);
         }
     }
 }

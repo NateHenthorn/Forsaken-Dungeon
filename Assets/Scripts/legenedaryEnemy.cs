@@ -21,7 +21,7 @@ public class legendaryEnemy : Enemies
         player = GameObject.FindGameObjectWithTag("Player");
         playerScript = player.GetComponent<Player>();
         gameManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
-        makeStatBlock();
+        // makeStatBlock();
         turnManager.setTurnStatusNum(initiative);
         InitializeEnemyOnTile();
     }
@@ -41,8 +41,13 @@ public class legendaryEnemy : Enemies
         blockPoints = 3;
         setCoins();
         name1 = "Legendary Enemy";
+        baseName = name1;
+        prefixNum = Random.Range(0, 100);
+        prefixName = pickPrefix(prefixNum);
+        name1 = prefixName + name1;
         moveSpeed = 1 * tileSize;
         attackRange = (2 * tileSize);
+        applySpecialEffect();
     }
     int setInitiative()
     {
