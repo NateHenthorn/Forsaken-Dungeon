@@ -115,6 +115,37 @@ MonoBehaviour:
   m_GameObject: {fileID: 3613941087743272451}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bd07512d25ba4b6439b63394fc4bb671, type: 3}
+  m_Script: {fileID: 11500000, guid: e228fd79b37ce9742a04a1f90bb9f836, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  abilityNum: -1
+  ability: 
+  damageTypeNum: -1
+  damageType: 
+  handsUsed: 1
+  attacks: 1
+  cost: 1
+  description: 
+  name1: 'Item '
+  namePrefix: 
+  nameSuffix: 
+  damage: 1
+  range: 1
+  preNum: 0
+  postNum: 0
+  rarityLevel: 0
+  damageMulitplier: 0
+  critChance: 1
+  isRanged: 0
+  baseName: 
+  magicDamage: 0
+  specialMoveNum: -1
+  specialMove: 'None '
+  acidDamage: 0
+  shockDamage: 0
+  flameDamage: 0
+  toxicDamage: 0
+  frozenDamage: 0
+  bleedDamage: 0
+  piercingDamage: 0
+  chanceToPierce: 0

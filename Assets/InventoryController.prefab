@@ -119,10 +119,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df8fb1b185ab8df439d4c09c227a8b91, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inventoryUI: {fileID: 0}
+  inventoryUI: {fileID: 6004696576549971587, guid: eb10c6ce8a7491f4b89d9c534baba909, type: 3}
   inventory: []
-  hudImage: {fileID: 0}
-  hudManager: {fileID: 0}
+  hudImage: {fileID: 5399038230236406736, guid: d293cdd4b24836a4da25cf805a55618f, type: 3}
+  hudManager: {fileID: 6697141733674960307}
+  HUDObject: {fileID: 1528306278326303208, guid: d293cdd4b24836a4da25cf805a55618f, type: 3}
   canvas: {fileID: 0}
 --- !u!114 &6697141733674960307
 MonoBehaviour:
@@ -136,13 +137,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ad3cb1f8ce9974449bc900e9cea5b8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  HUDImage: {fileID: 5399038230236406736, guid: d293cdd4b24836a4da25cf805a55618f, type: 3}
   HP: {fileID: 0}
   BP: {fileID: 0}
+  MBP: {fileID: 0}
   AP: {fileID: 0}
-  Luck: {fileID: 0}
-  costToLevel: {fileID: 0}
   DMG: {fileID: 0}
-  Str: {fileID: 0}
+  costToLevel: {fileID: 0}
+  range: {fileID: 0}
   coins: {fileID: 0}
   crit: {fileID: 0}
-  range: {fileID: 0}
+  Str: {fileID: 0}
+  Dex: {fileID: 0}
+  Int: {fileID: 0}
+  Con: {fileID: 0}
+  Luck: {fileID: 0}
+  Faith: {fileID: 0}
+  FlameRes: {fileID: 0}
+  ColdRes: {fileID: 0}
+  AcidRes: {fileID: 0}
+  ShockRes: {fileID: 0}
+  FlameDmg: {fileID: 0}
+  ColdDmg: {fileID: 0}
+  AcidDmg: {fileID: 0}
+  ShockDmg: {fileID: 0}
+  BleedDmg: {fileID: 0}
+  MagicDmg: {fileID: 0}
+  PiercingDmg: {fileID: 0}
+  StunChance: {fileID: 0}
