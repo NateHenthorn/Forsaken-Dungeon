@@ -119,6 +119,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   button: {fileID: 0}
-  itemSetter: {fileID: 7147167476093303953, guid: 6de631263fc51fa40b5d4780d360144d, type: 3}
-  shopItem: {fileID: 8183104800561026948, guid: eab146d93d43a7c4cb2bb960d49c19d3, type: 3}
+  itemSetter: {fileID: 7147167476093303953, guid: 3b8470393c6a0014ea4cda54f183b344, type: 3}
+  shopItem: {fileID: 8183104800561026948, guid: 723684f391397574d9180ff8f7ad94d8, type: 3}
   shopItems: []
