@@ -31,6 +31,12 @@ public class PShopItemSetter : MonoBehaviour
     public UltraGreatswordWeapon UltraGreatsword;
     public TwinbladesWeapon Twinblades;
     public WhipWeapon Whip;
+    public PBoots Boots;
+    public PChestPlate ChestPlate;
+    public PGloves Gloves;
+    public PHelmet Helmet;
+    public PLeggings Leggings;
+    public PShield Shield;
 
     public PShopItem pickItem(int randNum)
     {
@@ -62,6 +68,12 @@ public class PShopItemSetter : MonoBehaviour
             case 22: shopItem = UltraGreatsword; UltraGreatsword.rStart(); break;
             case 23: shopItem = Twinblades; Twinblades.rStart(); break;
             case 24: shopItem = Whip; Whip.rStart(); break;
+            case < 27: shopItem = Gloves; Gloves.rStart(); break; 
+            case < 30: shopItem = Boots; Boots.rStart(); break;
+            case < 33: shopItem = ChestPlate; ChestPlate.rStart();break;
+            case < 36: shopItem = Leggings; Leggings.rStart(); break;
+            case < 39: shopItem = Shield; Shield.rStart(); break;
+            case <= 42: shopItem = Helmet; Helmet.rStart(); break;
             default: break;
         }
         return shopItem;

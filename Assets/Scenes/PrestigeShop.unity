@@ -629,6 +629,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 177367864}
     m_Modifications:
+    - target: {fileID: 1176133462464359154, guid: d293cdd4b24836a4da25cf805a55618f, type: 3}
+      propertyPath: m_fontSize
+      value: 21.17
+      objectReference: {fileID: 0}
+    - target: {fileID: 1176133462464359154, guid: d293cdd4b24836a4da25cf805a55618f, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 21.17
+      objectReference: {fileID: 0}
     - target: {fileID: 1528306278326303208, guid: d293cdd4b24836a4da25cf805a55618f, type: 3}
       propertyPath: m_Name
       value: HUDImage
@@ -699,7 +707,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5530241729197180455, guid: d293cdd4b24836a4da25cf805a55618f, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -376.70074
+      value: -634.2
       objectReference: {fileID: 0}
     - target: {fileID: 5530241729197180455, guid: d293cdd4b24836a4da25cf805a55618f, type: 3}
       propertyPath: m_AnchoredPosition.y

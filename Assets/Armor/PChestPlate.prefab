@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 4823583980820551943}
   m_Layer: 0
   m_Name: PChestPlate
-  m_TagString: Untagged
+  m_TagString: Armor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

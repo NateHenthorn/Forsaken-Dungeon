@@ -55,9 +55,18 @@ public class ShopItem : MonoBehaviour, IPointerClickHandler
 
     public void itemBought()
     {
+        if (item.CompareTag("Weapon"))
+        {
         GameLogs.Instance.playerItemRange = item.range;
         GameLogs.Instance.playerItemDamage = item.damage;
         GameLogs.Instance.playerItemCrit = item.critChance;
         item.applySpecialMove(item.specialMoveNum);
-    }
+        }
+        if (item.CompareTag("Armor"))
+        {
+        GameLogs.Instance.playerCurrentBP += item.protectionLevel;
+        item.applySpecialMove(item.specialMoveNum);
+        }
+
+        }
 }
