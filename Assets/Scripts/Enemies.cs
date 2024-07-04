@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Threading;
 using System.Xml.Linq;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -47,6 +48,11 @@ public class Enemies : MonoBehaviour
     public int chanceToStun = 0;
     public int stunDuration = 0;
     public int critChance = 0;
+    public bool friendlyFire = false; //Used for Abnormal
+    public bool killedEnemy = false; //Used for Abnormal
+    public bool isAcidic = false; //Used for Acidic
+    public bool bounded = false; // Used for bounded
+    public bool charged = false; //Used for charged enemies
 
     // Reference to the player
     public GameObject player;
@@ -62,9 +68,11 @@ public class Enemies : MonoBehaviour
     protected bool hasGone = false;
     public bool hasTakenAction = false;
     public bool hasMoved = false;
+
     // Reference to the game manager
     public GameManager gameManager;
     public TurnManager turnManager;
+
     //canvas and statblock
     public StatBlock statblock;
     protected Canvas canvas;
@@ -72,6 +80,7 @@ public class Enemies : MonoBehaviour
     public StatTable statTable;
     protected int statBlockNum = -1;
     //Tile
+    protected Tile startingTile;
     protected Tile currentTile;
     public Button Next;
     public int tileSize = 26;
@@ -99,6 +108,7 @@ public class Enemies : MonoBehaviour
     }
     protected virtual void Start()
     {
+        startingTile = GetCurrentTile();
         enemyHover = this.GetComponent<EnemyHover>();
         // Find player object
         vision = vision * tileSize;
@@ -128,10 +138,16 @@ public class Enemies : MonoBehaviour
         }
         if (turnManager.turnStatus == initiative && actionPointsUsed < actionPoints && turnManager.state == BattleState.ENEMYTURN && !turnManager.turnHasBeenTaken)
         {
-            hasGone = true;
-            startTurn();
-            if (IsPlayerAdjacent()) { AttackPlayer(); }
+            if (!friendlyFire){ hasGone = true; startTurn();
+                if (IsPlayerAdjacent()) { AttackPlayer(); }
+            }
+            else {hasGone = true;startTurn();
+                if (IsAnyoneAdjacent()) { AttackAnyone(); }}
+
+            if (isAcidic) { playerScript.takeAcidDamage(1); }
+
         }
+        if (killedEnemy) { killedEnemy = false;prefixNum = Random.Range(0, 87); applySpecialEffect();}
     }
 
     public virtual void setTurnStatusNum()
@@ -141,7 +157,14 @@ public class Enemies : MonoBehaviour
     {
         if (!hasMoved)
         {
+            if (!friendlyFire)
+            {
             MoveTowardsPlayer();
+            }
+            else
+            {
+                MoveTowardsAnyone();
+            }
         }
         turnManager.turnHasBeenTaken = true;
     }
@@ -159,15 +182,99 @@ public class Enemies : MonoBehaviour
         Debug.Log("Direction towards player: " + direction);
 
         Tile nextTile = FindClosestAdjacentTile(direction);
-
+        float distance = Vector3.Distance(currentTile.transform.position, startingTile.transform.position);
         if (nextTile != null && !nextTile.IsOccupiedByEnemy() && !nextTile.isSolid && IsPlayerInVision())
         {
+            if (!bounded)
+            {
             MoveToTile(nextTile);
+            }
+            else if (distance < 3 * tileSize)
+            {
+                MoveToTile(nextTile);
+            }
         }
         else
         {
             Debug.LogWarning("Cannot move towards the player.");
         }
+        endTurn();
+    }
+
+    protected virtual void MoveTowardsAnyone()
+    {
+        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy"); // Assuming enemies have "Enemy" tag
+        GameObject player = GameObject.FindGameObjectWithTag("Player"); // Assuming player has "Player" tag
+        float tileDistance = Vector3.Distance(currentTile.transform.position, startingTile.transform.position);
+        Vector3 enemyPosition = transform.position;
+        GameObject target = null;
+        float nearestDistance = Mathf.Infinity;
+
+        // Find the nearest enemy or player
+        foreach (GameObject enemy in enemies)
+        {
+            if (enemy != null)
+            {
+                Vector3 targetPosition = enemy.transform.position;
+                float distance = Vector3.Distance(enemyPosition, targetPosition);
+
+                if (distance < nearestDistance)
+                {
+                    nearestDistance = distance;
+                    target = enemy;
+                }
+            }
+        }
+
+        // Check distance to player
+        if (player != null)
+        {
+            Vector3 playerPosition = player.transform.position;
+            float distanceToPlayer = Vector3.Distance(enemyPosition, playerPosition);
+
+            if (distanceToPlayer < nearestDistance)
+            {
+                target = player;
+            }
+        }
+
+        // If a target is found, move towards it
+        if (target != null)
+        {
+            Tile targetTile = playerScript.GetTileAtPosition(target.transform.position);
+            if (targetTile == null)
+            {
+                Debug.LogWarning("Target tile not found.");
+                endTurn();
+                return;
+            }
+
+            Vector3 direction = (targetTile.transform.position - transform.position).normalized;
+            Debug.Log("Direction towards target: " + direction);
+
+            Tile nextTile = FindClosestAdjacentTile(direction);
+
+            if (nextTile != null && !nextTile.IsOccupiedByEnemy() && !nextTile.isSolid && IsPlayerInVision())
+            {
+                if (!bounded)
+                {
+                    MoveToTile(nextTile);
+                }
+                else if (tileDistance < 3 * tileSize)
+                {
+                    MoveToTile(nextTile);
+                }
+            }
+            else
+            {
+                Debug.LogWarning("Cannot move towards the target.");
+            }
+        }
+        else
+        {
+            Debug.LogWarning("No valid target found to move towards.");
+        }
+
         endTurn();
     }
 
@@ -329,6 +436,49 @@ public class Enemies : MonoBehaviour
         // Check if the enemy is in an adjacent tile (considering 4-way adjacency)
         return (diffX <= attackRange && diffY <= attackRange) || (diffY <= attackRange && diffX <= 0) || (diffY <= 0 && diffX <= attackRange);
     }
+    public virtual bool IsAnyoneAdjacent()
+    {
+        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy"); // Assuming enemies have "Enemy" tag
+        GameObject player = GameObject.FindGameObjectWithTag("Player"); // Assuming player has "Player" tag
+
+        Vector3 enemyPosition = transform.position;
+        float nearestDistance = Mathf.Infinity;
+        bool isAdjacent = false;
+        float distanceToPlayer;
+        if (player != null)
+        {
+            Vector3 playerPosition = player.transform.position;
+            distanceToPlayer = Vector3.Distance(enemyPosition, playerPosition);
+
+            if (distanceToPlayer <= attackRange)
+            {
+                isAdjacent = true;
+            }
+        }
+        foreach (GameObject enemy in enemies)
+        {
+            if (enemy != null)
+            {
+                Vector3 targetPosition = enemy.transform.position;
+                float distance = Vector3.Distance(enemyPosition, targetPosition);
+
+                // Check if the enemy is adjacent or within attack range
+                if (distance <= attackRange)
+                {
+                    isAdjacent = true;
+                    break;
+                }
+
+                // Track the nearest enemy
+                if (distance < nearestDistance)
+                {
+                    nearestDistance = distance;
+                }
+            }
+        }
+
+        return isAdjacent;
+    }
     public virtual bool IsPlayerInVision()
     {
         Vector3 enemyPosition = transform.position;
@@ -344,6 +494,8 @@ public class Enemies : MonoBehaviour
 
     public virtual void AttackPlayer()
     {
+        int chargeNum = 1;
+        if (charged){chargeNum = Random.Range(1, 2);}
         int crit = 1;
         int random = Random.Range(1, 20);
         int stunNum = Random.Range(0, chanceToStun);
@@ -352,8 +504,91 @@ public class Enemies : MonoBehaviour
             stunNum = stunDuration;
         }
         if (random <= critChance) { crit = 2; print("Crit hit" + this.damage * crit); }
-        playerScript.takeDamage(this.damage * crit, this.frozenDamage, this.magicDamage, this.flameDamage, this.shockDamage, this.piercingDamage, this.acidDamage, stunNum);
+        if (chargeNum == 1)
+        {
+            playerScript.takeDamage(this.damage * crit, this.frozenDamage, this.magicDamage, this.flameDamage, this.shockDamage, this.piercingDamage, this.acidDamage, stunNum);
+            if (charged) { shockDamage = 0; }
+        }
+        else {shockDamage += 1;}
         hasTakenAction = true;
+    }
+
+    public virtual void AttackAnyone()
+    {
+        int chargeNum = 1;
+        if (charged) { chargeNum = Random.Range(1, 2); }
+        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy"); // Assuming enemies have "Enemy" tag
+        GameObject player = GameObject.FindGameObjectWithTag("Player"); // Assuming player has "Player" tag
+
+        Vector3 enemyPosition = transform.position;
+        GameObject target = null;
+        float nearestDistance = Mathf.Infinity;
+        bool targetEnemy = false;
+        // Find the nearest enemy
+        foreach (GameObject enemy in enemies)
+        {
+            if (enemy != null)
+            {
+                Vector3 targetPosition = enemy.transform.position;
+                float distance = Vector3.Distance(enemyPosition, targetPosition);
+
+                if (distance <= attackRange && distance < nearestDistance)
+                {
+                    nearestDistance = distance;
+                    target = enemy;
+                    targetEnemy = true;
+                }
+            }
+        }
+
+        // Check distance to player
+        if (player != null)
+        {
+            Vector3 playerPosition = player.transform.position;
+            float distanceToPlayer = Vector3.Distance(enemyPosition, playerPosition);
+
+            if (distanceToPlayer <= attackRange && distanceToPlayer < nearestDistance)
+            {
+                nearestDistance = distanceToPlayer;
+                target = player;
+                targetEnemy = false;
+            }
+        }
+
+        // If a target is found, attack it
+        if (target != null)
+        {
+            int crit = 1;
+            int random = Random.Range(1, 20);
+            int stunNum = Random.Range(0, chanceToStun);
+
+            if (stunNum > 0)
+            {
+                stunNum = stunDuration;
+            }
+
+            if (random <= critChance)
+            {
+                crit = 2;
+                Debug.Log("Critical hit! Damage: " + this.damage * crit);
+            }
+
+            // Attack the target
+            if (targetEnemy)
+            {
+            Enemies targetScript = target.GetComponent<Enemies>();
+            if (targetScript != null)
+            {
+                if (targetScript.hitPoints - (this.damage * crit + this.frozenDamage + this.magicDamage + this.flameDamage + this.shockDamage + this.piercingDamage + this.acidDamage) <=0)
+                {
+                    killedEnemy = true;
+                }
+                targetScript.takeDamage(this.damage * crit, this.frozenDamage, this.magicDamage, this.flameDamage, this.shockDamage, this.piercingDamage, this.acidDamage, stunNum);
+                hasTakenAction = true;
+            }
+            }
+            else{AttackPlayer();}
+        }
     }
 
     //Take Damage and die 
@@ -449,6 +684,7 @@ public class Enemies : MonoBehaviour
     }
     public virtual void enemySlain()
     {
+        GameManager.Instance.numEnemiesDead++;
         currentTile.eVacateTile();
         //currentTile.Unhighlight();
         drop();
@@ -592,20 +828,20 @@ public class Enemies : MonoBehaviour
         string rValue = "";
         switch (prefixNum)
         {
-            case 0: rValue = "Abnormal "; break;
-            case 1: rValue = "Acidic "; break;
-            case 2: rValue = "Aggressing "; break;
-            case 3: rValue = "Apocalyptic "; break;
-            case 4: rValue = "Ashen "; break;
+            case 0: rValue = "Abnormal "; this.friendlyFireOn(); break;
+            case 1: rValue = "Acidic "; this.isAcidic = true;  break;
+            case 2: rValue = "Aggressing "; this.actionPoints += 1; break;
+            case 3: rValue = "Apocalyptic "; this.damage += 2;  break;
+            case 4: rValue = "Ashen "; this.damage += GameManager.Instance.numEnemiesDead * 2; break;
             case 5: rValue = "Blackened "; break;
             case 6: rValue = "Blighted "; break;
-            case 7: rValue = "Bloody "; break;
-            case 8: rValue = "Blue "; break;
-            case 9: rValue = "Bounded "; break;
-            case 10: rValue = "Charged "; break;
-            case 11: rValue = "Charred "; break;
-            case 12: rValue = "Cold "; break;
-            case 13: rValue = "Combative "; break;
+            case 7: rValue = "Bloody "; this.damage += (damage / 2); this.actionPoints += 1; break;
+            case 8: rValue = "Blue "; this.frozenDamage += 1; this.hitPoints -= (hitPoints/4); break;
+            case 9: rValue = "Bounded "; this.bounded = true;  break;
+            case 10: rValue = "Charged "; this.charged = true;  break;
+            case 11: rValue = "Charred "; this.flameDamage += (this.damage/2); break;
+            case 12: rValue = "Cold "; this.frozenDamage += 1; break;
+            case 13: rValue = "Combative "; this.actionPoints += 2; break;
             case 14: rValue = "Conductive "; break;
             case 15: rValue = "Crazed "; break;
             case 16: rValue = "Crimson "; break;
@@ -671,7 +907,7 @@ public class Enemies : MonoBehaviour
             case 85: rValue = "Trading  "; break;
             case 86: rValue = "Transposing "; break;
             case 87: rValue = "Wise "; break;
-            default: rValue = ""; break;
+            default: rValue = "";break;
         }
         // damageType = rValue;
         switch (specialEffectNuMCounter)
@@ -682,6 +918,12 @@ public class Enemies : MonoBehaviour
             default: break;
         }
         return rValue;
+
+    }
+
+    public virtual void friendlyFireOn()
+    {
+        friendlyFire = true;
 
     }
 }

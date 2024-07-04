@@ -23,7 +23,7 @@ public class GameManager : MonoBehaviour
     public TurnManager TurnManager;
     public SceneController sceneController;
     public GameMap gameMap;
-
+    public int numEnemiesDead = 0;
 
     public static GameManager Instance { get; private set; }
 
