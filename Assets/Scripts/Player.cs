@@ -115,6 +115,7 @@ public class Player : MonoBehaviour
 
     private void Start()
     {
+        GameLogs.Instance.player = this;
         mainCamera = Camera.main;
         gameManager = FindObjectOfType<GameManager>();
         statTable = GameObject.FindGameObjectWithTag("StatTable").GetComponent<StatTable>();
