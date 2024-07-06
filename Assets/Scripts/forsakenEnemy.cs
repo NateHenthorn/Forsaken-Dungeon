@@ -37,6 +37,7 @@ public class forsakenEnemy : Enemies
         damage = 6;
         hitPoints = 12;
         blockPoints = 3;
+        origionalHitPoints = hitPoints;
         setCoins();
         name1 = "Forsaken Enemy";
         baseName = name1;
@@ -155,5 +156,10 @@ public class forsakenEnemy : Enemies
     public override void AttackPlayer()
     {
         base.AttackPlayer();
+    }
+
+    protected override string applySpecialEffect()
+    {
+        return base.applySpecialEffect();
     }
 }

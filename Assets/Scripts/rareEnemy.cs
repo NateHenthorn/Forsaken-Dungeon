@@ -35,6 +35,7 @@ public class rareEnemy : Enemies
     {
         damage = 2;
         hitPoints = 4;
+        origionalHitPoints = hitPoints;
         blockPoints = 2;
         name1 = "Rare Enemy";
         baseName = name1;
@@ -155,5 +156,9 @@ public class rareEnemy : Enemies
     public override void AttackPlayer()
     {
         base.AttackPlayer();
+    }
+    protected override string applySpecialEffect()
+    {
+        return base.applySpecialEffect();
     }
 }

@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using Unity.VisualScripting;
+using JetBrains.Annotations;
 
 public class Player : MonoBehaviour
 {
@@ -58,6 +59,10 @@ public class Player : MonoBehaviour
     public int magicDamage = 0;
     public int piercingDamage = 0;
     public int acidDamage = 0;
+    public int burnDamageRounds = 0;
+    public int takeBurnDamageType = -1;
+    public int takeBurnDamageAmount = -1;
+    public int restrained = 0;
 
     //Player Sats
     public int dmg = 40;
@@ -149,10 +154,7 @@ public class Player : MonoBehaviour
             prevCoins = coins;
             GameLogs.Instance.playerCurrentCoin = coins;
         }
-        if (actionPointsUsed == actionPoints)
-        {
-            endTurn();
-        }
+        if (actionPointsUsed == actionPoints) { endTurn(); }
     }
 
 
@@ -241,14 +243,9 @@ public class Player : MonoBehaviour
     {
         Vector3 playerPosition = transform.position;
         Tile thisTile = GetTileAtPosition(playerPosition);
-        if (thisTile != null)
-        {
-            thisTile.CheckForNeighbors();
-        }
-        else
-        {
-            Debug.LogError("Player is not on a valid tile at the start of turn.");
-        }
+        if (thisTile != null) {thisTile.CheckForNeighbors(); }
+        else{Debug.LogError("Player is not on a valid tile at the start of turn.");}
+        if (burnDamageRounds > 0) {burnDamageRounds--; takeBurnDamage(takeBurnDamageType, takeBurnDamageAmount, burnDamageRounds); }
     }
 
     private void InitializePlayerOnTile()
@@ -401,6 +398,78 @@ public class Player : MonoBehaviour
         }
     }
 
+    public void TransportPlayerToRandomTile()
+    {
+        Vector3 randomTilePosition = GetRandomEmptyTilePosition();
+        if (randomTilePosition != Vector3.zero)
+        {
+            transform.position = randomTilePosition;
+        }
+        else
+        {
+            Debug.Log("No empty tiles available.");
+        }
+    }
+
+    // Get a random empty tile position
+    private Vector3 GetRandomEmptyTilePosition()
+    {
+        GameObject[] tiles = GameObject.FindGameObjectsWithTag("Tile");
+        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
+
+        System.Collections.Generic.List<Vector3> emptyTiles = new System.Collections.Generic.List<Vector3>();
+
+        foreach (GameObject tile in tiles)
+        {
+            Vector3 tilePosition = tile.transform.position;
+            bool isOccupied = false;
+
+            foreach (GameObject enemy in enemies)
+            {
+                if (Vector3.Distance(tilePosition, enemy.transform.position) < tileSize * 0.5f)
+                {
+                    isOccupied = true;
+                    break;
+                }
+            }
+
+            if (!isOccupied)
+            {
+                emptyTiles.Add(tilePosition);
+            }
+        }
+
+        if (emptyTiles.Count > 0)
+        {
+            int randomIndex = Random.Range(0, emptyTiles.Count);
+            return emptyTiles[randomIndex];
+        }
+        else
+        {
+            return Vector3.zero;
+        }
+    }
+    public void restrainPlayer(int numRounds)
+    {
+        restrained = numRounds;
+    }
+    public void takeBurnDamage(int damageType, int damageAmount, int duration)
+    {
+        burnDamageRounds = duration;
+        takeBurnDamageType = damageType;
+        takeBurnDamageAmount = damageAmount;
+        switch (damageType)
+        {
+            case 0: takePhysicalDamage(damageAmount); break;
+            case 1: takeFrozenDamage(damageAmount); break;
+            case 2: takeMagicalDamage(damageAmount); break;
+            case 3: takeFlameDamage(damageAmount); break;
+            case 4: takeShockDamage(damageAmount); break;
+            case 5: takeAcidDamage(damageAmount); break;
+            case 6: takePiercingkDamage(damageAmount); break;
+            default: break;
+        }
+    }
     //Handle Damage and Death
     public void takeDamage(int physicalDmg, int frozenDmg, int magicDmg, int flameDmg, int shockDmg, int pierceDmg, int acidDmg, int stunDiration)
     {
@@ -501,6 +570,38 @@ public class Player : MonoBehaviour
         currentHP = currentHP - (damage / acidResistance);
         GameLogs.Instance.playerCurrentHP = currentHP;
         setStatBlock();
+    }
+
+    public GameObject FindClosestEnemy()
+    {
+        // Find all game objects with tag "Enemy"
+        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
+        GameObject closestEnemy = null;
+        float minDistance = Mathf.Infinity;
+        Vector3 playerPosition = transform.position;
+
+        // Iterate through all enemies to find the closest one
+        foreach (GameObject enemy in enemies)
+        {
+            float distanceToEnemy = Vector3.Distance(playerPosition, enemy.transform.position);
+            if (distanceToEnemy < minDistance)
+            {
+                minDistance = distanceToEnemy;
+                closestEnemy = enemy;
+            }
+        }
+
+        return closestEnemy;
+    }
+    public void MoveOneTileTowards(Vector3 targetPosition)
+    {
+        Vector3 direction = (targetPosition - transform.position).normalized;
+        Vector3 newPosition = transform.position + direction * tileSize;
+
+        // Adjust the new position to stay on grid if necessary
+        newPosition = new Vector3(Mathf.Round(newPosition.x), Mathf.Round(newPosition.y), Mathf.Round(newPosition.z));
+
+        transform.position = newPosition;
     }
 
     void playerIsSlain()

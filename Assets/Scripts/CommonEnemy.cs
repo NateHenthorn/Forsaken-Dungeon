@@ -34,6 +34,7 @@ public class commonEnemy : Enemies
     {
         damage = 1;
         hitPoints = 4;
+        origionalHitPoints = hitPoints;
         blockPoints = 3;
         setCoins();
         name1 = "Common Enemy";
@@ -153,5 +154,9 @@ public class commonEnemy : Enemies
     public override void AttackPlayer()
     {
         base.AttackPlayer();
+    }
+    protected override string applySpecialEffect()
+    {
+        return base.applySpecialEffect();
     }
 }
