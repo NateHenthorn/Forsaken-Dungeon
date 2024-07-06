@@ -54,7 +54,14 @@ public class GameManager : MonoBehaviour
 
         difLevel = GameLogs.Instance.roomDifficultLevel;
     }
-
+    public int getNumEntites()
+    {
+        return numEnemiesDead;
+    }
+    public void addNumberOfEntities()
+    {
+        numberOfEntities++;
+    }
     public void SpawnPlayer(int x, int y)
     {
         playerSpawner.spawnPlayer(x, y);

@@ -12,6 +12,20 @@ public class EnemySpawner : MonoBehaviour
     public Button nextButton;
     public TurnManager turnManager;
 
+    public static EnemySpawner Instance { get; private set; }
+    private void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
+
     // Start is called before the first frame update
     public void spawnEnemy(int x, int y, int enemyNum)
     {
@@ -24,6 +38,7 @@ public class EnemySpawner : MonoBehaviour
             if (enemyScript != null)
             {
                 enemyScript.Next = nextButton;
+                enemyScript.enemyNum = enemyNum;
             }
         }
         else if (enemyNum == 1)
@@ -33,6 +48,7 @@ public class EnemySpawner : MonoBehaviour
             if (enemyScript != null)
             {
                 enemyScript.Next = nextButton;
+                enemyScript.enemyNum = enemyNum;
             }
         }
         else if (enemyNum == 2)
@@ -42,6 +58,7 @@ public class EnemySpawner : MonoBehaviour
             if (enemyScript != null)
             {
                 enemyScript.Next = nextButton;
+                enemyScript.enemyNum = enemyNum;
             }
         }
         else if (enemyNum == 3)
@@ -51,6 +68,7 @@ public class EnemySpawner : MonoBehaviour
             if (enemyScript != null)
             {
                 enemyScript.Next = nextButton;
+                enemyScript.enemyNum = enemyNum;
             }
         }
     }

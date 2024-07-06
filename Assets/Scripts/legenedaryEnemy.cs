@@ -38,6 +38,7 @@ public class legendaryEnemy : Enemies
     {
         damage = 4;
         hitPoints = 8;
+        origionalHitPoints = hitPoints;
         blockPoints = 3;
         setCoins();
         name1 = "Legendary Enemy";
@@ -157,5 +158,9 @@ public class legendaryEnemy : Enemies
     public override void AttackPlayer()
     {
         base.AttackPlayer();
+    }
+    protected override string applySpecialEffect()
+    {
+        return base.applySpecialEffect();
     }
 }
