@@ -23,9 +23,13 @@ public class Tile : MonoBehaviour
 
     public virtual void Update()
     {
-        if (player.actionPointsUsed >= player.actionPoints)
+        if (player.actionPointsUsed >= player.actionPoints || !player.turnStarted)
         {
             UnhighlightNeighbors();
+        }
+        if(TurnManager.Instance.state == BattleState.PLAYERTURN)
+        {
+            player.GetTileAtPosition(player.transform.position).CheckForNeighbors();
         }
     }
 
@@ -37,7 +41,7 @@ public class Tile : MonoBehaviour
             if (hitCollider.CompareTag("Tile"))
             {
                 Tile tile = hitCollider.GetComponent<Tile>();
-                if (tile != null && tile != this && tile.isSolid == false)
+                if (tile != null && tile != this && tile.isSolid == false )
                 {
                     if (tile.isEnemyOccupied)
                     {

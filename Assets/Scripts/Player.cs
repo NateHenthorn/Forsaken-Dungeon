@@ -104,6 +104,7 @@ public class Player : MonoBehaviour
     public int tileSize = 26;
     public int stunnedFor = 0;
     public bool stunned = false;
+    public bool turnStarted = false;
 
     //References
     private GameManager gameManager;
@@ -241,6 +242,7 @@ public class Player : MonoBehaviour
 
     public void startTurn()
     {
+        turnStarted = true;
         Vector3 playerPosition = transform.position;
         Tile thisTile = GetTileAtPosition(playerPosition);
         if (thisTile != null) {thisTile.CheckForNeighbors(); }
@@ -319,6 +321,7 @@ public class Player : MonoBehaviour
     }
     void endTurn()
     {
+        turnStarted = false;
         turnManager.turnStatus--;
         hasGone = false;
         hasMoved = false;
