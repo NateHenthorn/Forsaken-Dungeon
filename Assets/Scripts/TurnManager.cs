@@ -31,6 +31,7 @@ public class TurnManager : MonoBehaviour
     public Player player1;
     public int turnStatus = -1;
     public bool turnHasBeenTaken = false;
+    public bool emenyTurnAdvanced = false;
 
     public static TurnManager Instance { get; private set; }
 
@@ -64,7 +65,7 @@ public class TurnManager : MonoBehaviour
         {
             switch (state)
             {
-                case BattleState.ENEMYTURN: if (turnStatus != playerInitiative) { StartCoroutine(EnemysTurn()); } break;
+                case BattleState.ENEMYTURN: if (turnStatus != playerInitiative && !emenyTurnAdvanced) { StartCoroutine(EnemysTurn()); } break;
 
                 case BattleState.PLAYERTURN: if (turnStatus == playerInitiative) { PlayerTurn(); StopCoroutine(EnemysTurn()); } break;
 
@@ -127,14 +128,14 @@ public class TurnManager : MonoBehaviour
     public void EndPlayerTurn()
     {
         isPlayerTurn = false;
-        StartCoroutine(EnemysTurn());
     }
 
     IEnumerator EnemysTurn()
     {
-
-        yield return new WaitForSeconds(0.2f); // Delay between enemy turns
+        emenyTurnAdvanced = true;
+        yield return new WaitForSeconds(0.025f); // Delay between enemy turns
         decreaseTurnStatus();
+        emenyTurnAdvanced = false;
     }
 
     private void decreaseTurnStatus()
