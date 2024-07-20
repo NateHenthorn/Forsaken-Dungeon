@@ -224,7 +224,7 @@ public class Enemies : MonoBehaviour
 
         Tile nextTile = FindClosestAdjacentTile(direction);
         float distance = Vector3.Distance(currentTile.transform.position, startingTile.transform.position);
-        if (nextTile != null && !nextTile.IsOccupiedByEnemy() && IsPlayerInVision())
+        if (nextTile != null && !nextTile.IsOccupiedByEnemy())
         {
            
             if (!bounded)
