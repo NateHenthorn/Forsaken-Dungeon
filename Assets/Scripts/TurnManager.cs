@@ -133,7 +133,7 @@ public class TurnManager : MonoBehaviour
     IEnumerator EnemysTurn()
     {
         emenyTurnAdvanced = true;
-        yield return new WaitForSeconds(0.025f); // Delay between enemy turns
+        yield return new WaitForSeconds(0.075f); // Delay between enemy turns
         decreaseTurnStatus();
         emenyTurnAdvanced = false;
     }
