@@ -57,9 +57,21 @@ public class HUDImage : MonoBehaviour
     public TextMeshProUGUI PiercingDmg;
     public TextMeshProUGUI StunChance;
 
+    //Scaling 
+    public Camera mainCamera;
+    public float referenceHeight = 1533f;
+    public float referenceWidth = 659f;
+    public HUDImage obj = GameObject.FindGameObjectWithTag("HUDImage").GetComponent<HUDImage>();
+    public float screenHeight;
+    public float scaleFactor;
+    public Vector3 scale;
+
+
 
     void Start()
     {
+        screenHeight = Screen.height;
+        scaleFactor = screenHeight / referenceHeight;
     }
 
     // Update is called once per frame
@@ -96,5 +108,12 @@ public class HUDImage : MonoBehaviour
         MagicDmg.text = "" + GameLogs.Instance.playerMagicDamage;
         PiercingDmg.text = "" + GameLogs.Instance.playerPiercingDamage;
         StunChance.text = "" + GameLogs.Instance.chanceToStun;
+
+        //Scaling 
+        if (obj != null)
+        {
+            obj.transform.localScale = new Vector3(scaleFactor, scaleFactor, 1);
+            scale = obj.transform.localScale;
+        }
     }
 }

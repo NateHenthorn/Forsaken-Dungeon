@@ -52,8 +52,9 @@ public class PShopManager : MonoBehaviour
             RectTransform shopItemRect = newShopItem.GetComponent<RectTransform>();
 
             shopItemRect.anchorMin = new Vector2(1, 1);
-            shopItemRect.anchorMax = new Vector2(1, 1);
-            shopItemRect.pivot = new Vector2(1, 1);
+            shopItemRect.anchorMax = new Vector2(0, 1);
+            shopItemRect.pivot = new Vector2(0.5f, 1);
+
 
             int insertIndex = 0;
 
@@ -93,7 +94,9 @@ public class PShopManager : MonoBehaviour
         foreach (ShopItem block in shopItems)
         {
             RectTransform shopItemRect = block.GetComponent<RectTransform>();
-            shopItemRect.anchoredPosition = new Vector2(-185, -100 - currentYOffset);
+            shopItemRect.anchoredPosition = new Vector2(0, -shopItemNum * 100); // Adjust Y-spacing per item
+            shopItemRect.sizeDelta = new Vector2(200, 50); // Adjust width/height
+            shopItemRect.anchoredPosition = new Vector2(105, -100 - currentYOffset);
             currentYOffset += shopItemRect.sizeDelta.y + 10f;
         }
     }
